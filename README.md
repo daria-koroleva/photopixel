@@ -15,7 +15,7 @@
  - [ ]  *Sprint 3*
  - [ ]  *Sprint 4*
  
-### Technologies
+## Technologies
 - Frontend
   - Framework: Angular (Typescript)
   - Library: Angular material / Bootstrap
@@ -23,3 +23,7 @@
   - Language: Python
   - Framework: Django
   - Database: Mysql
+  
+## Introduction
+In this project, we will build a websit similar to the Instagram. Most of the feature which Instagram has will be present here. Include but not limit to Follow a user, Posting picture with text, Leave comments, like button, add tags, etc. We will use Angular as our frontend framework and Djangon as our backend framework. 
+
