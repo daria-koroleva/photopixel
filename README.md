@@ -15,8 +15,11 @@
  - [ ]  *Sprint 3*
  - [ ]  *Sprint 4*
  
-## Techniques 
-<pre>
-Language perfered backend      Python Django            <br />
-Language perfered frontend      TBD (JavaScrept? Typescript? React? Angular? )
-</pre>
+### Technologies
+- Frontend
+  - Framework: Angular (Typescript)
+  - Library: Angular material / Bootstrap
+- Backend
+  - Language: Python
+  - Framework: Django
+  - Database: Mysql
