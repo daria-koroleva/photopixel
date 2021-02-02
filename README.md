@@ -30,7 +30,7 @@ The objective of this project is to create a social meida picture sharing websit
 
 ## Core Features
 - Posting a picture with text description
-   -Posting stories (viedo) (testing)
+   - Posting stories (viedo) (testing)
 - Following a user
    - Followers should receive notification when new pic is post
 - Leave comments to a posted picture
