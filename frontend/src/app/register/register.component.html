@@ -1,0 +1,21 @@
+<p>Register</p>
+
+
+<form [formGroup]='myForm' (ngSubmit)="submitRegisterForm()" *ngIf="this.registered != true && !userLoggedIn()">
+    <div>
+        <label for="username">Username</label>
+        <input type="text" formControlName="username">
+    </div>
+    <div>
+        <label for="email">Email</label>
+        <input type="text" formControlName="email">
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input type="password" formControlName="password">
+    </div>
+    <button type="submit">Register</button>
+</form>
+
+<button type="button" (click)="logout()">Logout</button>
+<div *ngIf="this.registered == true">REGISTER SUCCESS</div>

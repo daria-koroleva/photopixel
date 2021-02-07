@@ -1,10 +1,24 @@
+import { ApiService } from './api.service';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [ ApiService ],
 })
 export class AppComponent {
-  title = 'frontend';
+  
+
+  constructor(private api: ApiService) {
+    
+  }
+
+  ngOnInit(){
+  }
+
+  userLoggedIn(){
+    return (localStorage.length != 0);
+  }
+
 }
