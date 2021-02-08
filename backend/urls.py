@@ -6,7 +6,6 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from backend.account import urls
 
 router = routers.DefaultRouter()
-#router.register(r'movies', views.MovieViewSet)
 #router.register(r'profile', views.ProfileView)
 
 urlpatterns = [
