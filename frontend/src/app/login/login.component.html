@@ -1,0 +1,21 @@
+<p>Login</p>
+
+
+<form [formGroup]='myForm' (ngSubmit)="submitLoginForm()" *ngIf="!userLoggedIn()">
+    <div>
+        <label for="email">Email</label>
+        <input type="text" formControlName="email">
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input type="password" formControlName="password">
+    </div>
+    <button type="submit">Login</button>
+</form>
+
+<button type="button" (click)="logout()">Logout</button>
+
+
+<!--<h4>{{userData.email}}</h4>-->
+
+<h2 *ngIf="userLoggedIn()"> {{currentUserName}} is logged in</h2>
