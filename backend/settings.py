@@ -1,9 +1,12 @@
 
 from pathlib import Path
+import os 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+MEDIA_URL = '/frontend/src/assets/media/images/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "frontend/src/assets/media/images/")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -33,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'backend.account',
+    'backend.post',
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
