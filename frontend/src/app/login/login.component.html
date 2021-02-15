@@ -1,4 +1,26 @@
-<p>Login</p>
+<form [formGroup]='myForm' class="form-signin" (ngSubmit)="submitLoginForm()" *ngIf="!userLoggedIn()"> 
+    <!-- <img class="mb-4" src="assets/images/logo.png" alt="" width="72" height="72"> -->
+    <i class="bi bi-camera-fill logo-picture"></i>  
+    <span class="logo">PhotoPixel</span>
+
+    
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    
+  </form>
+
+
+  <div class="form-signin">
+    <label>
+      Don't have an account? <a routerLink="/register">Sign up</a>
+    </label>
+    <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
+  </div>
+<!-- <p>Login</p>
 
 
 <form [formGroup]='myForm' (ngSubmit)="submitLoginForm()" *ngIf="!userLoggedIn()">
@@ -13,9 +35,9 @@
     <button type="submit">Login</button>
 </form>
 
-<button type="button" (click)="logout()">Logout</button>
+<button type="button" (click)="logout()">Logout</button> -->
 
 
 <!--<h4>{{userData.email}}</h4>-->
 
-<h2 *ngIf="userLoggedIn()"> {{currentUserName}} is logged in</h2>
+<!-- <h2 *ngIf="userLoggedIn()"> {{currentUserName}} is logged in</h2> -->
