@@ -31,11 +31,12 @@ get f() {
   submitLoginForm(){
     this.api.login(this.f.email.value, this.f.password.value).pipe(first()).subscribe(
       data => {
+        this.setCurrentUserName();
         console.log(data);
         this.userData = data;
       }
     )
-    this.setCurrentUserName();
+    
   }
 
   logout(){

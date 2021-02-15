@@ -14,7 +14,6 @@ const httpOptions = {
 export class ApiService {
 
   baseurl: string = "http://127.0.0.1:8000/";
-  
   constructor(private http: HttpClient) { }
 
    login(username: string, password: string){
@@ -34,5 +33,19 @@ export class ApiService {
     {username, email, password}, httpOptions);
   }
 
+
+  newpost(title: string, content: string, author:string, photoFileName:string){
+    console.log(photoFileName)
+    return this.http.post<any>(this.baseurl + 'posts/post/',
+    {title, content, author, photoFileName}, httpOptions);
+  }
+
+  getposts(){
+    return this.http.get(this.baseurl + 'posts/post/');
+  }
+
+  saveFileToServer(val:any){
+    return this.http.post(this.baseurl + 'posts/post/saveFile/', val);
+  }
 
 }
