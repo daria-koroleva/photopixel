@@ -13,3 +13,9 @@ class AccountSerializer(serializers.ModelSerializer):
         account.set_password(validated_data['password'])
         account.save()
         return account
+    
+    
+class FollowSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Follow
+        fields = ('following', 'follower')
