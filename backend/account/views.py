@@ -55,3 +55,42 @@ class AccountCreateAPIView(generics.CreateAPIView):
     queryset = Account.objects.all()
     serializer_class = AccountSerializer
     permission_classes = (AllowAny,)
+    
+    
+
+
+class FollowView(APIView):
+    """
+    Follow functionality to follow, unfollow, and display all followed.
+    """
+    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        """
+        follow the following specified by following param
+        """
+        following = request.query_params['following']
+        f1 = Follow(following_id=following, follower_id=request.user.id)
+        try:
+            f1.save()
+            return HttpResponse(status=200)
+        except:
+            return HttpResponse(status=400)
+
+    def delete(self, request, *args, **kwargs):
+        """
+        unfollow the specified following
+        """
+        following = request.query_params['following']
+        Follow.objects.filter(follower_id=request.user.id, following_id=following).delete()
+        return HttpResponse(status=200)
+
+    def get(self, request, *args, **kwargs):
+        """
+        get all followings by login
+        """
+        user = request.user
+        followings = Follow.objects.filter(follower_id=user.id).all()
+        serializer = FollowSerializer(followings, many=True)
+        return JsonResponse(serializer.data, safe=False)    
