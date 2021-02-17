@@ -60,3 +60,8 @@ class Account(AbstractBaseUser):
         return True
 
     
+
+class Follow(models.Model):
+    # Both of follower and following fields are related to the Account
+    following = models.ForeignKey(Account, related_name='followings', on_delete=models.CASCADE)
+    follower = models.ForeignKey(Account, related_name='followers', on_delete=models.CASCADE)
