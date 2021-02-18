@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ApiService } from './../api.service';
 import { first } from 'rxjs/operators'
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   myForm: FormGroup;
   userData: any;
   currentUserName: string;
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService,private _router:Router) { }
 
   ngOnInit(): void {
     this.myForm = new FormGroup({
@@ -52,6 +53,7 @@ get f() {
   setCurrentUserName(){
     if (this.userLoggedIn()) {
       this.currentUserName = JSON.parse(localStorage.getItem("currentUser")).username;
+      this._router.navigateByUrl("/profile");
     }
   }
 

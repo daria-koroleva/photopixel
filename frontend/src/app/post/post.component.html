@@ -1,24 +1,30 @@
-<p>Post</p>
+<div class="container">
+
+    <p>Post</p>
 
 
-<form [formGroup]='myForm' (ngSubmit)="submitPostForm()" *ngIf="userLoggedIn()">
-    <div>
-        <label for="title">Title</label>
-        <input type="text" formControlName="title">
-    </div>
-    <div>
-        <label for="content">Content</label>
-        <input type="text" formControlName="content">
-    </div>
-    <div>
-        <label for="content">Image</label>
-        <input type="file" (change)="onFileSelected($event)" formControlName="uploadedFile">
-    </div>
-    <button type="submit">Submit</button>
-</form>
+    <form [formGroup]='myForm' (ngSubmit)="submitPostForm()" *ngIf="userLoggedIn()">
+        <div>
+            <label for="title">Title</label>
+            <input type="text" formControlName="title">
+        </div>
+        <div>
+            <label for="content">Content</label>
+            <input type="text" formControlName="content">
+        </div>
+        <div>
+            <label for="content">Image</label>
+            <input type="file" (change)="onFileSelected($event)" formControlName="uploadedFile">
+        </div>
+        <button type="submit">Submit</button>
+    </form>
 
 
-<h3 *ngIf="!userLoggedIn()"> Please Login to post</h3>
-<h3 *ngIf="userLoggedIn()"> {{currentUserName}} is logged in</h3>
+    <h3 *ngIf="!userLoggedIn()"> Please Login to post</h3>
+    <h3 *ngIf="userLoggedIn()"> {{currentUserName}} is logged in</h3>
 
-<div *ngIf="this.posted == true">Posted Successfully</div>
+    <div *ngIf="this.posted == true">Posted Successfully</div>
+
+
+
+</div>
