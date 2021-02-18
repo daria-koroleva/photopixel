@@ -1,13 +1,36 @@
 from rest_framework import serializers
-from .models import Post
-
+from .models import Post,Like,Comment
 
 class PostSerializer(serializers.ModelSerializer):
-    
+    poster = serializers.ReadOnlyField(source='poster.username')
+    poster_id = serializers.ReadOnlyField(source='poster.id')
+#    likes = serializers.SerializerMethodField()
+
     class Meta:
         model = Post
-        fields = ('id', 'title', 'content', 'author', 'date_posted', 'photoFileName')
-        
+        fields = ['id','title', 'photoFileName', 'poster','poster_id', 'date_posted']
+
+    def get_likes(self, post):
+        return Post.objects.filter(post=post).count()
+
+
+class LikeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Like
+        fields = ['id']
+
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ['id']
+#class PostSerializer(serializers.ModelSerializer):
+
+#    class Meta:
+#        model = Post
+#        fields = ('id', 'title', 'content', 'author', 'date_posted', 'photoFileName')
+
     #def create(self, validated_data):
      #   return Post.objects.create(**validated_data)
 
