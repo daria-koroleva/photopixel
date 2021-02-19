@@ -8,7 +8,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['id','title', 'photoFileName', 'poster','poster_id', 'date_posted']
+        fields = ['id','title', 'photoFileName','content', 'poster','poster_id', 'date_posted']
 
     def get_likes(self, post):
         return Post.objects.filter(post=post).count()
