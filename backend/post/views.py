@@ -30,6 +30,15 @@ class PostRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
         else:
             raise ValidationError('This isn\'t your post to delete!')
 
+    def perform_create(self, serializer):
+        serializer = PostSerializer(data=request.data)
+        if serializer.is_valid():
+            file = request.FILES['uploadedFile']
+            file_name = default_storage.save(file.name,file)
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class LikeCreate(generics.CreateAPIView, mixins.DestroyModelMixin):
     serializer_class = LikeSerializer
@@ -74,6 +83,7 @@ class LikeCreate(generics.CreateAPIView, mixins.DestroyModelMixin):
 
 @csrf_exempt
 def saveFile(request):
-    file_name = default_storage.save(file.name,file)
     file = request.FILES['uploadedFile']
+    file_name = default_storage.save(file.name,file)
+
     return JsonResponse(file_name, safe=False)
