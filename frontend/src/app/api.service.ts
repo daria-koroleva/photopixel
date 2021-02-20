@@ -23,6 +23,7 @@ export class ApiService {
 
   setTokenHeader(){
     httpOptions.headers = httpOptions.headers.set('Authorization', 'Token ' + JSON.parse(localStorage.getItem("currentUser")).token);
+    console.log('Token ' + JSON.parse(localStorage.getItem("currentUser")).token);
   }
 
   login(username: string, password: string){
@@ -58,6 +59,13 @@ export class ApiService {
 
   saveFileToServer(file:any){
     return this.http.post(this.baseurl + 'posts/post/saveFile/', file);
+  }
+
+  deleteImage(id:any){
+    if (this.userLoggedIn()){
+      this.setTokenHeader();
+    }
+    return this.http.delete(this.baseurl + 'posts/post/'+ id, httpOptions);
   }
 
 }
