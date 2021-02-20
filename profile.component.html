@@ -1,0 +1,28 @@
+<div class="container">
+    <p>Profile</p>
+
+    <h2 *ngIf="!userLoggedIn()"> Please login to see profile</h2>
+    <h2 *ngIf="userLoggedIn()"> {{currentUserName}} is logged in</h2>
+
+    <div *ngFor="let post of posts">
+        <ul *ngIf="post.author == currentUserName">
+            <li>{{ post.id }}</li>
+            <li>{{ post.title }}</li>
+            <li>{{ post.content }}</li>
+            <li>{{ post.date_posted }}</li>
+            <li>{{ post.author }}</li>
+            <li>{{ post.photoFileName }}</li>
+
+            <img width="100px" height="100px" src="/assets/media/images/{{ post.photoFileName }}" alt="">
+            <!--<div *ngFor="let post of posts">-->
+              <!--<h3>{{ post.title }}</h3>
+              <p>{{ post.content }}</p>-->
+              <button (click)="deleteImage(post)" style="float:right" >Delete</button>
+            <!--</div>-->
+            <!--<button type="button" (onclick)="deleteImage()" style="float: right">delete Image</button>-->
+
+        </ul>
+    </div>
+
+
+</div>
