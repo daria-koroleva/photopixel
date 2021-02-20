@@ -30,7 +30,7 @@ export class PostComponent implements OnInit {
   }
   
   submitPostForm(){
-    this.api.newpost(this.f.title.value, this.f.content.value, JSON.parse(localStorage.getItem("currentUser")).username, this.selectedFile.name).pipe(first()).subscribe(
+    this.api.newpost(this.f.title.value, this.f.content.value, this.selectedFile.name).pipe(first()).subscribe(
       data => {
         console.log(data);
         this.posted = true;
