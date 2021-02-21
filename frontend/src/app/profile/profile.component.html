@@ -12,6 +12,7 @@
             <li>{{ post.date_posted }}</li>
             <li>{{ post.photoFileName }}</li>
             <img width="100px" height="100px" src="/assets/media/images/{{ post.photoFileName }}" alt="">
+            <ngx-imgclicker [options]="options"></ngx-imgclicker>
             <button (click)="deleteImage(post)" style="float:right" >Delete</button>
 
         </ul>

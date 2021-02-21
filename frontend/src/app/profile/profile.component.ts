@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../api.service';
 import { first, map } from 'rxjs/operators'
+import { Options } from '@flywine93/ngx-imgclicker';
 
 @Component({
   selector: 'app-profile',
@@ -51,6 +52,13 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
+
+  title = 'imgclicker-project';
+  options: Options = {
+    urlCallback: (url: string) => {
+      return url;
+    }
+  };
 
 
 }
