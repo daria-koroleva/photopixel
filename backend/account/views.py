@@ -9,7 +9,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework import generics
 from .models import Account
-from .serializers import AccountSerializer, FollowSerializer
+from .serializers import AccountSerializer, FollowSerializer, UserListSerializer
 
 
 class ProfileView(APIView):
@@ -22,16 +22,13 @@ class ProfileView(APIView):
             'auth': str(request.auth),  # None
             'username': str(request.user.username),
             'email': str(request.user.email),
-            'date_joined': str(request.user.date_joined),
-            'last_login': str(request.user.last_login),
-            'is_admin': str(request.user.is_admin),
-            'is_active': str(request.user.is_active),
-            'is_staff': str(request.user.is_staff),
-            'is_superuser': str(request.user.is_superuser),
             'id': str(request.user.id),
         }
         return Response(content)
 
+class UserList(generics.ListAPIView):
+    queryset = Account.objects.all()
+    serializer_class = UserListSerializer 
 
 class CustomAuthToken(ObtainAuthToken):
 

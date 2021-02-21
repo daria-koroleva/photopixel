@@ -13,6 +13,13 @@ class AccountSerializer(serializers.ModelSerializer):
         account.set_password(validated_data['password'])
         account.save()
         return account
+
+
+class UserListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Account
+        fields = ('username', 'email')
     
     
 class FollowSerializer(serializers.ModelSerializer):
