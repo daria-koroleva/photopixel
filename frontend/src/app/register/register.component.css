@@ -56,3 +56,13 @@ body {
 .logo-picture{
     font-size: 3rem;
 }
+
+#register-errors {
+  color: red;
+  font-size: 12px;
+}
+
+#email-errors, #pw-errors {
+  color: red;
+  font-size: 12px;
+}

@@ -68,4 +68,8 @@ export class ApiService {
     return this.http.delete(this.baseurl + 'posts/post/'+ id, httpOptions);
   }
 
+  getListOfUsers(){
+    return this.http.get(this.baseurl + 'accounts/users/');
+  }
+
 }
