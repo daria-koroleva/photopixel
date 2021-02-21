@@ -11,6 +11,9 @@ import { PostComponent } from './post/post.component';
 import { HeaderComponent } from './header/header.component';
 import { NgxImgclickerModule } from '@flywine93/ngx-imgclicker';
 import { CommonModule } from '@angular/common';
+import { ProfileHeaderComponent } from './profile-header/profile-header.component';
+import { GalleryItemComponent } from './gallery-item/gallery-item.component';
+import { GalleryComponent } from './gallery/gallery.component';
 
 
 @NgModule({
@@ -20,7 +23,10 @@ import { CommonModule } from '@angular/common';
     ProfileComponent,
     RegisterComponent,
     PostComponent,
-    HeaderComponent
+    HeaderComponent,
+    ProfileHeaderComponent,
+    GalleryItemComponent,
+    GalleryComponent
   ],
   imports: [
     BrowserModule,
