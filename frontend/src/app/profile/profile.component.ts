@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../api.service';
 import { first, map } from 'rxjs/operators'
+import { Options } from '@flywine93/ngx-imgclicker';
 
 @Component({
   selector: 'app-profile',
@@ -11,8 +12,8 @@ export class ProfileComponent implements OnInit {
 
   posts: any;
   currentUserName: string;
-  constructor(private api : ApiService) { 
-   
+  constructor(private api : ApiService) {
+
   }
 
   ngOnInit(): void {
@@ -38,6 +39,26 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
+
+  deleteImage(post:any){
+    let post_id = post.id;
+    console.log("delete image button is pressed");
+    console.log(post_id);
+    this.api.deleteImage(post_id).subscribe(
+      data => {
+        console.log(data);
+        this.posts = null;
+        //this._router.navigateByUrl("");
+      }
+    );
+  }
+
+  title = 'imgclicker-project';
+  options: Options = {
+    urlCallback: (url: string) => {
+      return url;
+    }
+  };
 
 
 }
