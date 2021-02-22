@@ -14,7 +14,10 @@
     <label for="inputPassword" class="sr-only">Password</label>
     <input formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required (change)="checkPW()">
     <!-- errors -->
-    <div class="form-signin" id="pw-errors"></div>
+    <div class="form-signin" id="pw-errors" hidden></div>
+
+    <label for="profilePic" class="sr-only">Profile Picture</label>
+    <input formControlName="profilePic" (change)="onFileSelected($event)" type="file" id="profile-pic" placeholder="Profile Pic" class="form-control">
 
 
     <!-- errors -->

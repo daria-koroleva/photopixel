@@ -34,10 +34,10 @@ export class PostComponent implements OnInit {
       data => {
         console.log(data);
         this.posted = true;
-        
+        this.saveFile();
       }
     )
-    this.saveFile();
+    
   }
   
   userLoggedIn(){

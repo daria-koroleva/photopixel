@@ -1,7 +1,7 @@
 <div class="gallery-container">
 
-    <div   *ngFor="let item of _galleryData" class="item-container">
-        <app-gallery-item  [fileName]="item.photoFileName"></app-gallery-item>
+    <div   *ngFor="let post of posts" class="item-container">
+        <app-gallery-item [post]="post" [fileName]="post.photoFileName"></app-gallery-item>
     </div>    
 
     

@@ -1,15 +1,10 @@
 <div class="container">
 
-    <app-profile-header></app-profile-header>
-    <app-gallery></app-gallery>
+    <app-profile-header [profilePic]="currentUserProfilePic"></app-profile-header>
+    <app-gallery [posts]="posts"></app-gallery>
 
 
-    <p>Profile</p>
-
-    <h2 *ngIf="!userLoggedIn()"> Please login to see profile</h2>
-    <h2 *ngIf="userLoggedIn()"> {{currentUserName}} is logged in</h2>
-
-    <div *ngFor="let post of posts">
+    <!--<div *ngFor="let post of posts">
         <ul *ngIf="post.poster == currentUserName">
             <li>{{ post.id }}</li>
             <li>{{ post.title }}</li>
@@ -21,6 +16,6 @@
             <button (click)="deleteImage(post)" style="float:right" >Delete</button>
 
         </ul>
-    </div>
+    </div>-->
 
 </div>
