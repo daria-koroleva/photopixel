@@ -14,13 +14,15 @@ export class RegisterComponent implements OnInit {
   myForm: FormGroup;
   registered: boolean = false;
   allUsers :any;
+  selectedFile: File = null;
   constructor(private api: ApiService) { }
 
   ngOnInit(): void {
     this.myForm = new FormGroup({
       username: new FormControl(''),
       email: new FormControl(''),
-      password: new FormControl('')
+      password: new FormControl(''),
+      profilePic: new FormControl('')
     });
     this.getAllUsers();
   }
@@ -39,8 +41,8 @@ export class RegisterComponent implements OnInit {
   }
 
   submitRegisterForm(){
-    this.api.register(this.f.username.value, this.f.email.value, this.f.password.value).pipe(first()).subscribe(
-      res => {this.registered = true}, err => {
+    this.api.register(this.f.username.value, this.f.email.value, this.f.password.value, this.selectedFile.name).pipe(first()).subscribe(
+      res => {this.registered = true; this.saveFile();}, err => {
         let element = document.getElementById('register-errors')
         element.innerHTML = "<p>Errors exist</p>"
       }
@@ -79,13 +81,27 @@ export class RegisterComponent implements OnInit {
     let badPW = false;
     let element = document.getElementById('pw-errors')
     element.innerHTML = '';
+    element.hidden = true;
     if (pw.length < 8){
       element.innerHTML += "Password Too Short<br>"
+      element.hidden = false;
     }
     if (!pw.match(/\d+/)){
       element.innerHTML += "Password has no digits"
+      element.hidden = false;
     }
+  }
 
+  onFileSelected(event:any){
+    this.selectedFile = event.target.files[0];
+    console.log(this.selectedFile)
+  }
+
+  saveFile(){
+    console.log(this.selectedFile);
+    const fd: FormData = new FormData();
+    fd.append('uploadedFile', this.selectedFile, this.selectedFile.name);
+    this.api.saveFileToServer(fd).subscribe();
   }
 
 }

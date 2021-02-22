@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-gallery',
@@ -9,7 +9,8 @@ export class GalleryComponent implements OnInit {
 
 
   _galleryData:Post[];
-
+  @Input() posts: any;
+  
   constructor() { 
     this._galleryData=[];
     this._galleryData.push(new Post(1,"Mock 1","Content mock 1","2/21/2021","item1.jpg"));

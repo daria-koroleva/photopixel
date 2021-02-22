@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.shortcuts import render
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
@@ -23,6 +22,7 @@ class ProfileView(APIView):
             'username': str(request.user.username),
             'email': str(request.user.email),
             'id': str(request.user.id),
+            'profilePictureName' : str(request.user.profilePhotoFileName)
         }
         return Response(content)
 
@@ -41,7 +41,8 @@ class CustomAuthToken(ObtainAuthToken):
         return Response({
             'token': token.key,
             'username' : user.username,
-            'email': user.email
+            'email': user.email,
+            'profilePictureName' : user.profilePhotoFileName
         })
 
 
@@ -49,7 +50,6 @@ class AccountCreateAPIView(generics.CreateAPIView):
     queryset = Account.objects.all()
     serializer_class = AccountSerializer
     permission_classes = (AllowAny,)
-    
     
 
 

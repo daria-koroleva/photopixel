@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../api.service';
 import { first, map } from 'rxjs/operators'
-import { Options } from '@flywine93/ngx-imgclicker';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -12,12 +12,14 @@ export class ProfileComponent implements OnInit {
 
   posts: any;
   currentUserName: string;
-  constructor(private api : ApiService) {
+  currentUserProfilePic: string;
+  constructor(private api : ApiService, private _router:Router) {
 
   }
 
   ngOnInit(): void {
     this.setCurrentUserName();
+    this.setCurrentUserProfilePictureName();
     this.getProfileData();
   }
 
@@ -31,8 +33,15 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  setCurrentUserProfilePictureName(){
+    if (this.userLoggedIn()) {
+      this.currentUserProfilePic = JSON.parse(localStorage.getItem("currentUser")).profilePictureName;
+      console.log(this.currentUserProfilePic);
+    }
+  }
+
   getProfileData(){
-    this.api.getposts().pipe(first()).subscribe(
+    this.api.getMyPosts().pipe(first()).subscribe(
       post => {
         console.log(post);
         this.posts = post;
@@ -48,17 +57,11 @@ export class ProfileComponent implements OnInit {
       data => {
         console.log(data);
         this.posts = null;
-        //this._router.navigateByUrl("");
+        this._router.navigateByUrl("");
       }
     );
   }
 
-  title = 'imgclicker-project';
-  options: Options = {
-    urlCallback: (url: string) => {
-      return url;
-    }
-  };
 
 
 }

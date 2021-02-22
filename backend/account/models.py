@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 class MyAccountManager(BaseUserManager):
 
-    def create_user(self, email, username, password=None):
+    def create_user(self, email, username, profilePhotoFileName, password=None):
         if not email:
             raise ValueError("Users must have an email address")
         if not username:
@@ -12,7 +12,8 @@ class MyAccountManager(BaseUserManager):
 
         user = self.model(
             email = self.normalize_email(email),
-            username = username
+            username = username,
+            profilePhotoFileName = profilePhotoFileName
         )
 
         user.set_password(password)
@@ -25,7 +26,8 @@ class MyAccountManager(BaseUserManager):
         user = self.create_user(
             email = self.normalize_email(email),
             password = password,
-            username = username
+            username = username,
+            profilePhotoFileName = "DEFAULT"
         )
 
         user.is_admin = True
@@ -43,6 +45,7 @@ class Account(AbstractBaseUser):
     is_active           = models.BooleanField(default=True)
     is_staff            = models.BooleanField(default=False)
     is_superuser        = models.BooleanField(default=False)
+    profilePhotoFileName         = models.CharField(max_length=100, default='profilePicFileName', blank=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']

@@ -23,7 +23,6 @@ export class ApiService {
 
   setTokenHeader(){
     httpOptions.headers = httpOptions.headers.set('Authorization', 'Token ' + JSON.parse(localStorage.getItem("currentUser")).token);
-    console.log('Token ' + JSON.parse(localStorage.getItem("currentUser")).token);
   }
 
   login(username: string, password: string){
@@ -38,9 +37,9 @@ export class ApiService {
     );
   }
 
-  register(username: string, email: string, password: string){
+  register(username: string, email: string, password: string, profilePhotoFileName:string){
     return this.http.post<any>(this.baseurl + 'accounts/api/auth/register/',
-    {username, email, password}, httpOptions);
+    {username, email, password, profilePhotoFileName}, httpOptions);
   }
 
 
@@ -53,8 +52,15 @@ export class ApiService {
     {title, content, photoFileName}, httpOptions);
   }
 
-  getposts(){
+  getAllPosts(){
     return this.http.get(this.baseurl + 'posts/post/');
+  }
+
+  getMyPosts(){
+    if (this.userLoggedIn()){
+      this.setTokenHeader();
+    }
+    return this.http.get(this.baseurl + 'posts/myposts/', httpOptions);
   }
 
   saveFileToServer(file:any){
