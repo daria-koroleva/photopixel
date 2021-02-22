@@ -30,6 +30,16 @@ class UserList(generics.ListAPIView):
     queryset = Account.objects.all()
     serializer_class = UserListSerializer 
 
+
+
+class ProfileDetailByUser(generics.RetrieveAPIView):
+    serializer_class = AccountSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Account.objects.filter(id=self.kwargs['pk'])
+
+
 class CustomAuthToken(ObtainAuthToken):
 
     def post(self, request, *args, **kwargs):
@@ -42,6 +52,7 @@ class CustomAuthToken(ObtainAuthToken):
             'token': token.key,
             'username' : user.username,
             'email': user.email,
+            'id':user.pk,
             'profilePictureName' : user.profilePhotoFileName
         })
 

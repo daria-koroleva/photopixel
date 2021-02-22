@@ -5,6 +5,7 @@ from backend.account import views
 
 urlpatterns = [
     path('profile/', views.ProfileView.as_view()),
+    path('profile/<int:pk>', views.ProfileDetailByUser.as_view()),
     path('users/', views.UserList.as_view()),
     path('api/auth/login/', views.CustomAuthToken.as_view()),
     path('api/auth/register/', views.AccountCreateAPIView.as_view()),
