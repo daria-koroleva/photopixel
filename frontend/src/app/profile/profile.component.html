@@ -1,6 +1,6 @@
 <div class="container" >
 
-    <app-profile-header [profileInfo]="profileInfo"></app-profile-header>
+    <app-profile-header *ngIf="postsLoaded && profileInfoLoaded" [profileInfo]="profileInfo" [postCount]="posts.length"></app-profile-header>
     <app-gallery [posts]="posts"></app-gallery>
 
     <!--<div *ngFor="let post of posts">

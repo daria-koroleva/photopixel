@@ -16,6 +16,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   profileInfo: any; //useer info of profile currently being viewed
   profileId: number=null; //user id of profile currently being viewed
   currentUserName: string; //username of logged in user
+  postsLoaded :boolean = false;
+  profileInfoLoaded :boolean = false;
   constructor(private api : ApiService, private _router:Router, private activatedRoute: ActivatedRoute) {
 
   }
@@ -51,6 +53,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.api.getAllPostsByUserId(this.profileId).pipe(first()).subscribe(
       post => {
         this.posts = post;
+        this.postsLoaded = true;
       }
     );
   }
@@ -59,6 +62,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.api.getProfileInfoByUserId(this.profileId).pipe(first()).subscribe(
       profileInfo => {
         this.profileInfo = profileInfo;
+        this.profileInfoLoaded = true;
       }
     );
   }

@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ProfileHeaderComponent implements OnInit {
 
   @Input() profileInfo:any;
+  @Input() postCount:number;
   currentUserName:string;
   constructor() { }
 
