@@ -63,9 +63,10 @@ class LikeCreate(generics.CreateAPIView, mixins.DestroyModelMixin):
 
     def get_queryset(self):
         account = self.request.user
-        post = Post.objects.get(pk=self.kwargs['pk'])
-        return Post.objects.filter(liker=account, post=post)
+        post =   Post.objects.get(pk=self.kwargs['pk'])
+        return Like.objects.filter(liker=account, post=post)
 
+    
     def perform_create(self, serializer):
         if self.get_queryset().exists():
             raise ValidationError('You have already liked this post')

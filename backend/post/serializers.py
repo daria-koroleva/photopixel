@@ -4,14 +4,14 @@ from .models import Post,Like,Comment
 class PostSerializer(serializers.ModelSerializer):
     poster = serializers.ReadOnlyField(source='poster.username')
     poster_id = serializers.ReadOnlyField(source='poster.id')
-#    likes = serializers.SerializerMethodField()
+    likes = serializers.SerializerMethodField()
 
     class Meta:
         model = Post
-        fields = ['id','title', 'photoFileName','content', 'poster','poster_id', 'date_posted']
+        fields = ['id','title', 'photoFileName','content', 'poster','poster_id','likes','date_posted']
 
     def get_likes(self, post):
-        return Post.objects.filter(post=post).count()
+        return Like.objects.filter(post=post).count()
 
 
 class LikeSerializer(serializers.ModelSerializer):
