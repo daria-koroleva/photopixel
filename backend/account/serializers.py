@@ -6,13 +6,20 @@ class AccountSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Account
-        fields = ('username', 'email', 'password')
+        fields = ('username', 'email', 'password', 'profilePhotoFileName')
 
     def create(self, validated_data):
         account = super(AccountSerializer, self).create(validated_data)
         account.set_password(validated_data['password'])
         account.save()
         return account
+
+
+class UserListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Account
+        fields = ('username', 'email')
     
     
 class FollowSerializer(serializers.ModelSerializer):

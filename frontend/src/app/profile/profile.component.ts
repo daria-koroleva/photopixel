@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../api.service';
 import { first, map } from 'rxjs/operators'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -11,12 +12,14 @@ export class ProfileComponent implements OnInit {
 
   posts: any;
   currentUserName: string;
-  constructor(private api : ApiService) { 
-   
+  currentUserProfilePic: string;
+  constructor(private api : ApiService, private _router:Router) {
+
   }
 
   ngOnInit(): void {
     this.setCurrentUserName();
+    this.setCurrentUserProfilePictureName();
     this.getProfileData();
   }
 
@@ -30,14 +33,35 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  setCurrentUserProfilePictureName(){
+    if (this.userLoggedIn()) {
+      this.currentUserProfilePic = JSON.parse(localStorage.getItem("currentUser")).profilePictureName;
+      console.log(this.currentUserProfilePic);
+    }
+  }
+
   getProfileData(){
-    this.api.getposts().pipe(first()).subscribe(
+    this.api.getMyPosts().pipe(first()).subscribe(
       post => {
         console.log(post);
         this.posts = post;
       }
     );
   }
+
+  deleteImage(post:any){
+    let post_id = post.id;
+    console.log("delete image button is pressed");
+    console.log(post_id);
+    this.api.deleteImage(post_id).subscribe(
+      data => {
+        console.log(data);
+        this.posts = null;
+        this._router.navigateByUrl("");
+      }
+    );
+  }
+
 
 
 }

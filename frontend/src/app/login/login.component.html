@@ -6,14 +6,18 @@
     
     <label for="inputEmail" class="sr-only">Email address</label>
     <input formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+    
     <label for="inputPassword" class="sr-only">Password</label>
     <input formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-    
+
+    <!-- errors -->
+    <div class="form-signin" id="login-errors"></div>
+
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     
   </form>
 
-
+  
   <div class="form-signin">
     <label>
       Don't have an account? <a routerLink="/register">Sign up</a>

@@ -39,6 +39,13 @@ class PostRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class PostListByCallingUser(generics.ListAPIView):
+    serializer_class = PostSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def get_queryset(self):
+        user = self.request.user
+        return Post.objects.filter(poster=user)
 
 class LikeCreate(generics.CreateAPIView, mixins.DestroyModelMixin):
     serializer_class = LikeSerializer

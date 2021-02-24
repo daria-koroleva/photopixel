@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   myForm: FormGroup;
   userData: any;
   currentUserName: string;
+  
   constructor(private api: ApiService,private _router:Router) { }
 
   ngOnInit(): void {
@@ -35,9 +36,13 @@ get f() {
         this.setCurrentUserName();
         console.log(data);
         this.userData = data;
+      },
+      error => {
+        console.log(error);
+        let element = document.getElementById('login-errors')
+        element.innerHTML = "<p>Incorrect email or password - please try again</p>"
       }
     )
-    
   }
 
   logout(){
@@ -56,5 +61,7 @@ get f() {
       this._router.navigateByUrl("/profile");
     }
   }
+
+  
 
 }

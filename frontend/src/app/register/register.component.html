@@ -7,11 +7,23 @@
     <label for="inputUsername" class="sr-only">Username</label>
     <input formControlName="username" type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
     <label for="inputEmail" class="sr-only">Email address</label>
-    <input formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required >
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <input formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required (change)="checkEmail()">
+    <!-- errors -->
+    <div class="form-signin" id="email-errors" hidden></div>
     
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required (change)="checkPW()">
+    <!-- errors -->
+    <div class="form-signin" id="pw-errors" hidden></div>
+
+    <label for="profilePic" class="sr-only">Profile Picture</label>
+    <input formControlName="profilePic" (change)="onFileSelected($event)" type="file" id="profile-pic" placeholder="Profile Pic" class="form-control">
+
+
+    <!-- errors -->
+    <div class="form-signin" id="register-errors"></div>
+
+    <button class="btn btn-lg btn-primary btn-block" id="submit-btn" type="submit">Register</button>
     
   </form>
 
