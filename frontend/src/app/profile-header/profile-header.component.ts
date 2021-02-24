@@ -7,19 +7,20 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ProfileHeaderComponent implements OnInit {
 
-  @Input() profilePic: string;
+  @Input() profileInfo:any;
+  @Input() postCount:number;
   currentUserName:string;
-
   constructor() { }
 
   ngOnInit(): void {
-    this.setCurrentUserName(); 
-
+    this.setCurrentUserName();
+    
   }
 
 
   setCurrentUserName(){    
       this.currentUserName = JSON.parse(localStorage.getItem("currentUser")).username;    
   }
+
 
 }

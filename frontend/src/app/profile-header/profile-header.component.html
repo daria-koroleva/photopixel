@@ -1,14 +1,14 @@
 <div class="container-header-profile">
 
     <div class="picture-column">
-        <img src="assets\media\images\{{profilePic}}" alt="Avatar">
+        <img src="assets\media\images\{{profileInfo.profilePhotoFileName}}" alt="Avatar">
     </div>
 
     <div class="details-column">
-        <div class="username"> {{currentUserName}} </div>
+        <div class="username"> {{profileInfo.username}} </div>
         <div class="counters">            
 
-            <div class="counter"><b>6</b> Posts</div>
+            <div class="counter"><b>{{postCount}}</b> Posts</div>
             <div class="counter"><b>4</b> Following</div>            
         </div>        
         <div class="counters">

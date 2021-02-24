@@ -55,12 +55,25 @@ export class ApiService {
   getAllPosts(){
     return this.http.get(this.baseurl + 'posts/post/');
   }
-
   getMyPosts(){
     if (this.userLoggedIn()){
       this.setTokenHeader();
     }
     return this.http.get(this.baseurl + 'posts/myposts/', httpOptions);
+  }
+
+  getAllPostsByUserId(id:number){
+    if (this.userLoggedIn()){
+      this.setTokenHeader();
+    }
+    return this.http.get(this.baseurl + 'posts/profileposts/'+id, httpOptions);
+  }
+
+  getProfileInfoByUserId(id:number){
+    if (this.userLoggedIn()){
+      this.setTokenHeader();
+    }
+    return this.http.get(this.baseurl + 'accounts/profile/'+id, httpOptions);
   }
 
   saveFileToServer(file:any){

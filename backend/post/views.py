@@ -47,6 +47,16 @@ class PostListByCallingUser(generics.ListAPIView):
         user = self.request.user
         return Post.objects.filter(poster=user)
 
+
+class PostListByUserID(generics.ListAPIView):
+    serializer_class = PostSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def get_queryset(self):
+        return Post.objects.filter(poster=self.kwargs['pk'])
+
+
+
 class LikeCreate(generics.CreateAPIView, mixins.DestroyModelMixin):
     serializer_class = LikeSerializer
     permission_classes = [permissions.IsAuthenticated]

@@ -21,6 +21,10 @@ const routes: Routes = [
     canActivate:[LoginGuard]
   },
   {
+    path:'profile/:id', component: ProfileComponent,
+    canActivate:[LoginGuard]
+  },
+  {
     path:'register', component: RegisterComponent    
   },  
   {
