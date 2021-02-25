@@ -57,7 +57,7 @@ class PostListByUserID(generics.ListAPIView):
 
 
 
-class LikeCreate(generics.CreateAPIView, mixins.DestroyModelMixin):
+class LikeCreate(generics.ListCreateAPIView, mixins.DestroyModelMixin):
     serializer_class = LikeSerializer
     permission_classes = [permissions.IsAuthenticated]
 
@@ -66,7 +66,7 @@ class LikeCreate(generics.CreateAPIView, mixins.DestroyModelMixin):
         post =   Post.objects.get(pk=self.kwargs['pk'])
         return Like.objects.filter(liker=account, post=post)
 
-    
+
     def perform_create(self, serializer):
         if self.get_queryset().exists():
             raise ValidationError('You have already liked this post')
@@ -79,8 +79,12 @@ class LikeCreate(generics.CreateAPIView, mixins.DestroyModelMixin):
         else:
             raise ValidationError('you didn\'t like this post')
 
-
-
+class  LikeListByPost(generics.ListAPIView):
+    serializer_class = LikeSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    def get_queryset(self):
+        post = Post.objects.get(pk=self.kwargs['pk'])
+        return Like.objects.filter(post=post)
 
 #@api_view(['GET', 'POST'])
 #def post_list(request):
