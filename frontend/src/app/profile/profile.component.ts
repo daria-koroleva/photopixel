@@ -1,26 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ApiService } from './../api.service';
 import { first, map } from 'rxjs/operators'
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
 
-  posts: any;
-  currentUserName: string;
-  currentUserProfilePic: string;
-  constructor(private api : ApiService, private _router:Router) {
+  private sub: any;
+  posts: any; //profile of posts currently being viewed
+  profileInfo: any; //useer info of profile currently being viewed
+  profileId: number=null; //user id of profile currently being viewed
+  currentUserName: string; //username of logged in user
+  postsLoaded :boolean = false;
+  profileInfoLoaded :boolean = false;
+  constructor(private api : ApiService, private _router:Router, private activatedRoute: ActivatedRoute) {
 
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 
   ngOnInit(): void {
     this.setCurrentUserName();
-    this.setCurrentUserProfilePictureName();
-    this.getProfileData();
+    this.sub = this.activatedRoute.params.subscribe(params => {
+      this.profileId = params.id;
+      if (this.profileId == null){
+        this.profileId = JSON.parse(localStorage.getItem("currentUser")).id;
+      }
+      });
+      this.getProfileInfo();
+      this.getProfilePosts();
   }
 
   userLoggedIn(){
@@ -33,18 +48,21 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  setCurrentUserProfilePictureName(){
-    if (this.userLoggedIn()) {
-      this.currentUserProfilePic = JSON.parse(localStorage.getItem("currentUser")).profilePictureName;
-      console.log(this.currentUserProfilePic);
-    }
+
+  getProfilePosts(){
+    this.api.getAllPostsByUserId(this.profileId).pipe(first()).subscribe(
+      post => {
+        this.posts = post;
+        this.postsLoaded = true;
+      }
+    );
   }
 
-  getProfileData(){
-    this.api.getMyPosts().pipe(first()).subscribe(
-      post => {
-        console.log(post);
-        this.posts = post;
+  getProfileInfo(){
+    this.api.getProfileInfoByUserId(this.profileId).pipe(first()).subscribe(
+      profileInfo => {
+        this.profileInfo = profileInfo;
+        this.profileInfoLoaded = true;
       }
     );
   }
