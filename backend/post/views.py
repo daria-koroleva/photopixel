@@ -80,11 +80,23 @@ class LikeCreate(generics.CreateAPIView, mixins.DestroyModelMixin):
             raise ValidationError('you didn\'t like this post')
 
 class CommentRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Post.objects.all()
+    queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
+    def delete(self, request, *args, **kwargs):
+        comment = Comment.objects.filter(pk=kwargs['pk'], commenter=self.request.user)
+        if comment.exists():
+            return self.destroy(request, *args, **kwargs)
+        else:
+            raise ValidationError('This isn\'t your comment to delete!')
 
+    def perform_create(self, serializer):
+        serializer = CommentSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 #@api_view(['GET', 'POST'])
 #def post_list(request):
 #    if request.method == 'GET':
