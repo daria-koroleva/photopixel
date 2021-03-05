@@ -8,7 +8,7 @@ from .serializers import PostSerializer,LikeSerializer,CommentSerializer
 from django.core.files.storage import default_storage
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
-from rest_framework.generics import GenericAPIView
+
 
 
 class PostList(generics.ListCreateAPIView):
@@ -83,20 +83,28 @@ class LikeCreate(generics.CreateAPIView, mixins.DestroyModelMixin):
 
 class CommentRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Comment.objects.all()
+    lookup_url_kwarg = "comment_id"
     serializer_class = CommentSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
-    def get_queryset(self):
-        account = self.request.user
-        post =   Post.objects.get(pk=self.kwargs['pk'])
-        return Comment.objects.filter(commenter=account,post=post)
 
     def delete(self, request, *args, **kwargs):
-        comment = Comment.objects.filter(pk=kwargs['pk'], commenter=self.request.user)
-        if comment.exists():
-            return self.destroy(request, *args, **kwargs)
-        else:
-            raise ValidationError('This isn\'t your comment to delete!')
+
+        pk = self.kwargs['comment_id']
+        try:
+            comment = Comment.objects.get(pk=pk)
+        except Comment.DoesNotExist:
+            raise NotFound('No comment with this ID found.')
+
+        if comment.commenter.id != request.user.id:
+            return Response({
+                "error": "you can not delete a comment that does not belong to you"},
+                status=status.HTTP_401_UNAUTHORIZED)
+        comment.delete()
+
+        return Response({
+            "message": "Your comment has been successfully deleted"},
+            status=status.HTTP_200_OK)
 
     def perform_create(self, serializer):
 
@@ -106,41 +114,7 @@ class CommentRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     #        serializer.save(commenter=self.request.user,content=self.request., post=Post.objects.get(pk=self.kwargs['pk']))
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-'''
-    def put(self,request,format = None):
-        serializer = CommentSerializer(data = request.data)
-        if serializer.is_valid():
-            comment_data = update_comment(request.data)
-            if comment_data:
-                return Response({"message":"Updated Successfully."}, status=status.HTTP_200_OK)
-            return Response({"message": "No Data Found."}, status=status.HTTP_200_OK)
-        return Response({"message":"Invalid Data."},status=status.HTTP_400_BAD_REQUEST)'''
 
-
-class CommentCreate(GenericAPIView):
-    serializer_class = CommentSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-    def get_queryset(self):
-        account = self.request.user
-        post =   Post.objects.get(pk=self.kwargs['pk'])
-        return Comment.objects.filter(commenter=account,post=post)
-
-
-    def post(self, request):
-
-        serializer = CommentSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def delete(self, request, *args, **kwargs):
-        if self.get_queryset().exists():
-            self.get_queryset().delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        else:
-            raise ValidationError('you didn\'t comment this post')
 
 class CommentListByPost(generics.ListAPIView):
     serializer_class = CommentSerializer
@@ -148,7 +122,7 @@ class CommentListByPost(generics.ListAPIView):
     def get_queryset(self):
         return Comment.objects.filter(post=self.kwargs['pk'])
 
-class Commenting(generics.ListCreateAPIView, mixins.DestroyModelMixin):
+class CommentCreate(generics.ListCreateAPIView, mixins.DestroyModelMixin):
 
     serializer_class = CommentSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -157,8 +131,6 @@ class Commenting(generics.ListCreateAPIView, mixins.DestroyModelMixin):
         account = self.request.user
         post =   Post.objects.get(pk=self.kwargs['pk'])
         return Comment.objects.filter(commenter=account, post=post)
-
-
     def perform_create(self, serializer):
 
         serializer.save(commenter=self.request.user, post=Post.objects.get(pk=self.kwargs['pk']))
