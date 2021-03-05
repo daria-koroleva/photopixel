@@ -1,4 +1,4 @@
-
+<!--<app-commentPage></app-commentPage>-->
 <div class="item-container">
     <img src="assets\media\images\{{post.photoFileName}}">
     <ngx-imgclicker [options]="options"></ngx-imgclicker>
@@ -13,6 +13,7 @@
     </div>
     <div>
       <button (click)="deleteImage(post)" style="float:right" class="button button1" >Delete</button>
-      <a routerLink="comment" class="button button1" style="float:left">Comments</a>
+      <a routerLink="/comment"><button (click)="commentPage()" class="button button1" style="float:left">Comments</button></a>
+      <!--<button (click)="commentPage()" class="button button1" style="float:left">Comments</button>-->
     </div>
 </div>

@@ -1,8 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { Options } from '@flywine93/ngx-imgclicker';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ApiService } from './../api.service';
-import { first, map } from 'rxjs/operators'
+import { first, map } from 'rxjs/operators';
+import { post } from 'jquery';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { DataService } from '../data.service'
 
 
 @Component({
@@ -12,6 +15,9 @@ import { first, map } from 'rxjs/operators'
 })
 export class GalleryItemComponent implements OnInit {
 
+
+  message: string;
+
   posts: any;
   profileId: number=null;
   profileInfoLoaded :boolean = false;
@@ -20,10 +26,16 @@ export class GalleryItemComponent implements OnInit {
   @Input() fileName: string;
   @Input() post: any;
 
-  constructor(private api:ApiService, private _router:Router) { }
+
+  constructor(private api:ApiService, private _router:Router,private data:DataService) {
+
+  }
+
+
 
   ngOnInit(): void {
-
+    //console.log(this.fileName,'filename');
+    this.data.currentMessage.subscribe(message => this.message = message)
   }
 
   title = 'imgclicker-project';
@@ -33,11 +45,14 @@ export class GalleryItemComponent implements OnInit {
     }
   };
 
+
+
   getProfilePosts(){
     this.api.getAllPostsByUserId(this.profileId).pipe(first()).subscribe(
       post => {
         this.posts = post;
         this.postsLoaded = true;
+
       }
     );
   }
@@ -54,5 +69,19 @@ export class GalleryItemComponent implements OnInit {
       }
     );
   }
+
+  commentPage(){
+    console.log('comment button is pressed');
+    console.log('file name is ',this.fileName)
+    this.newMessage(this.fileName)
+
+  }
+
+  newMessage(message){
+    this.data.changeMessage(message);
+  }
+
+
+
 
 }
