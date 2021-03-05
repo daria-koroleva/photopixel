@@ -59,7 +59,7 @@ class PostListByUserID(generics.ListAPIView):
 
 
 
-class LikeCreate(generics.CreateAPIView, mixins.DestroyModelMixin):
+class LikeCreate(generics.ListCreateAPIView, mixins.DestroyModelMixin):
     serializer_class = LikeSerializer
     permission_classes = [permissions.IsAuthenticated]
 
@@ -80,12 +80,19 @@ class LikeCreate(generics.CreateAPIView, mixins.DestroyModelMixin):
             return Response(status=status.HTTP_204_NO_CONTENT)
         else:
             raise ValidationError('you didn\'t like this post')
+class  LikeListByPost(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    serializer_class = LikeSerializer
+    def get_queryset(self):
+        post = Post.objects.get(pk=self.kwargs['pk'])
+        return Like.objects.filter(post=post)
 
 class CommentRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Comment.objects.all()
     lookup_url_kwarg = "comment_id"
     serializer_class = CommentSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
 
 
     def delete(self, request, *args, **kwargs):

@@ -6,10 +6,22 @@
 
     <div class="details-column">
         <div class="username"> {{profileInfo.username}} </div>
+        <!--<div *ngIf="userFollowing()">
+            <button (click)="followUser(id)" style="float: right">unfollow</button>
+            
+        </div>
+
+        <button (click)="followUser(id)" style="float: right"></button>-->
+        <button [ngClass]="{'followup' : isFollow == true,
+            'unfollow' : isFollow== false }" 
+            (click)="onClick()" style="float: right">
+            {{isFollow == true ? 'Unfollow' : (isFollow == false ? 'Follow' : '')}}
+        </button>
         <div class="counters">            
 
             <div class="counter"><b>{{postCount}}</b> Posts</div>
-            <div class="counter"><b>4</b> Following</div>            
+            <div class="counter"><b>4</b><a href="/" target="_blank"> Following</a> </div>  
+
         </div>        
         <div class="counters">
             
@@ -18,3 +30,7 @@
 
 </div>
 <div class="dropdown-divider"></div>
+
+
+
+

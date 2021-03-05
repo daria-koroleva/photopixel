@@ -1,3 +1,4 @@
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -7,7 +8,7 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework import generics
-from .models import Account
+from .models import Account, Follow
 from .serializers import AccountSerializer, FollowSerializer, UserListSerializer
 
 
@@ -28,7 +29,7 @@ class ProfileView(APIView):
 
 class UserList(generics.ListAPIView):
     queryset = Account.objects.all()
-    serializer_class = UserListSerializer 
+    serializer_class = UserListSerializer
 
 
 
@@ -61,7 +62,7 @@ class AccountCreateAPIView(generics.CreateAPIView):
     queryset = Account.objects.all()
     serializer_class = AccountSerializer
     permission_classes = (AllowAny,)
-    
+
 
 
 class FollowView(APIView):
@@ -98,4 +99,4 @@ class FollowView(APIView):
         user = request.user
         followings = Follow.objects.filter(follower_id=user.id).all()
         serializer = FollowSerializer(followings, many=True)
-        return JsonResponse(serializer.data, safe=False)    
+        return JsonResponse(serializer.data, safe=False)
