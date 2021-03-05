@@ -4,10 +4,12 @@ from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from rest_framework.exceptions import ValidationError
 from .models import Post,Like,Comment
-from .serializers import PostSerializer,LikeSerializer
+from .serializers import PostSerializer,LikeSerializer,CommentSerializer
 from django.core.files.storage import default_storage
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
+
+
 
 class PostList(generics.ListCreateAPIView):
     queryset = Post.objects.all()
@@ -78,30 +80,75 @@ class LikeCreate(generics.ListCreateAPIView, mixins.DestroyModelMixin):
             return Response(status=status.HTTP_204_NO_CONTENT)
         else:
             raise ValidationError('you didn\'t like this post')
-
 class  LikeListByPost(generics.ListAPIView):
-    serializer_class = LikeSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    serializer_class = LikeSerializer
     def get_queryset(self):
         post = Post.objects.get(pk=self.kwargs['pk'])
         return Like.objects.filter(post=post)
 
-#@api_view(['GET', 'POST'])
-#def post_list(request):
-#    if request.method == 'GET':
-#        post = Post.objects.all()
-#        post1 = post.filter(author = request.user.username)
-#        serializer = PostSerializer(post, many=True)
-#        return Response(serializer.data)
+class CommentRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Comment.objects.all()
+    lookup_url_kwarg = "comment_id"
+    serializer_class = CommentSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
-#    elif request.method == 'POST':
-#        serializer = PostSerializer(data=request.data)
-#        if serializer.is_valid():
-            #file = request.FILES['uploadedFile']
-            #file_name = default_storage.save(file.name,file)
-#            serializer.save()
-#            return Response(serializer.data, status=status.HTTP_201_CREATED)
-#        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+    def delete(self, request, *args, **kwargs):
+
+        pk = self.kwargs['comment_id']
+        try:
+            comment = Comment.objects.get(pk=pk)
+        except Comment.DoesNotExist:
+            raise NotFound('No comment with this ID found.')
+
+        if comment.commenter.id != request.user.id:
+            return Response({
+                "error": "you can not delete a comment that does not belong to you"},
+                status=status.HTTP_401_UNAUTHORIZED)
+        comment.delete()
+
+        return Response({
+            "message": "Your comment has been successfully deleted"},
+            status=status.HTTP_200_OK)
+
+    def perform_create(self, serializer):
+
+        serializer = CommentSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(commenter=self.request.user, post=Post.objects.get(pk=self.kwargs['pk']))
+    #        serializer.save(commenter=self.request.user,content=self.request., post=Post.objects.get(pk=self.kwargs['pk']))
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class CommentListByPost(generics.ListAPIView):
+    serializer_class = CommentSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    def get_queryset(self):
+        return Comment.objects.filter(post=self.kwargs['pk'])
+
+class CommentCreate(generics.ListCreateAPIView, mixins.DestroyModelMixin):
+
+    serializer_class = CommentSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        account = self.request.user
+        post =   Post.objects.get(pk=self.kwargs['pk'])
+        return Comment.objects.filter(commenter=account, post=post)
+    def perform_create(self, serializer):
+
+        serializer.save(commenter=self.request.user, post=Post.objects.get(pk=self.kwargs['pk']))
+
+    def delete(self, request, *args, **kwargs):
+        if self.get_queryset().exists():
+            self.get_queryset().delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            raise ValidationError('you didn\'t comment this post')
+
 
 @csrf_exempt
 def saveFile(request):
