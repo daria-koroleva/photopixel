@@ -91,4 +91,27 @@ export class ApiService {
     return this.http.get(this.baseurl + 'accounts/users/');
   }
 
+
+  uploadComment(picId:string ,comment:string){
+
+    if(this.userLoggedIn()){
+      this.setTokenHeader();
+    }
+    return this.http.post(this.baseurl + 'posts/post/' + picId + '/comment/', {content:comment},httpOptions);
+  }
+
+  requestComment(picId:string){
+
+    return this.http.get(this.baseurl + 'posts/post/'+ picId +'/comments')
+  }
+
+  deleteComment(picId:string,commentId:string){
+
+    if(this.userLoggedIn()){
+      this.setTokenHeader();
+    }
+    return this.http.delete(this.baseurl + 'posts/post/' + picId +'/comment/'+commentId,httpOptions)
+  }
+
+
 }
