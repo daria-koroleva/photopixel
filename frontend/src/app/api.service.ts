@@ -109,5 +109,20 @@ export class ApiService {
   getListOfUsers(){
     return this.http.get(this.baseurl + 'accounts/users/');
   }
+  
+  
+  getListOfFollowersOfUserId(id:number){
+    if (this.userLoggedIn()){
+      this.setTokenHeader();
+    }
+    return this.http.get(this.baseurl + 'accounts/followersUser/'+id, httpOptions);
+  }
+
+  getListOfUserIdFollowing(id:number){
+    if (this.userLoggedIn()){
+      this.setTokenHeader();
+    }
+    return this.http.get(this.baseurl + 'accounts/followingUser/'+id, httpOptions);
+  }
 
 }
