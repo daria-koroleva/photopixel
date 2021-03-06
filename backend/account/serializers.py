@@ -19,7 +19,7 @@ class UserListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Account
-        fields = ('username', 'email')
+        fields = ('id','username', 'email')
     
     
 class FollowSerializer(serializers.ModelSerializer):
