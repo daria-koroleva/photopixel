@@ -1,7 +1,7 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated, AllowAny, IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.authtoken.views import ObtainAuthToken
@@ -100,3 +100,19 @@ class FollowView(APIView):
         followings = Follow.objects.filter(follower_id=user.id).all()
         serializer = FollowSerializer(followings, many=True)
         return JsonResponse(serializer.data, safe=False)
+    
+
+class FollowersUserIDList(generics.ListAPIView): #list of users following this user id
+    serializer_class = FollowSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def get_queryset(self):
+        return Follow.objects.filter(following=self.kwargs['pk'])
+
+
+class FollowingUserIDList(generics.ListAPIView): #list of users that this user id follows
+    serializer_class = FollowSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def get_queryset(self):
+        return Follow.objects.filter(follower=self.kwargs['pk'])
