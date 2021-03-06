@@ -75,7 +75,12 @@ export class ApiService {
     }
     return this.http.get(this.baseurl + 'accounts/profile/'+id, httpOptions);
   }
-
+  getFollowingsByUserId(){
+    if (this.userLoggedIn()){
+      this.setTokenHeader();
+    }
+    return this.http.get(this.baseurl + 'accounts/api/auth/follow/', httpOptions);
+  }
   saveFileToServer(file:any){
     return this.http.post(this.baseurl + 'posts/post/saveFile/', file);
   }
@@ -86,6 +91,20 @@ export class ApiService {
     }
     return this.http.delete(this.baseurl + 'posts/post/'+ id, httpOptions);
   }
+  UnFollow(id:any){
+    if (this.userLoggedIn()){
+      this.setTokenHeader();
+    }
+    return this.http.delete(this.baseurl + 'accounts/api/auth/follow/?following='+id, httpOptions);
+  }
+  Follow(id:any){
+    if (this.userLoggedIn()){
+      this.setTokenHeader();
+    }
+    return this.http.post<any>(this.baseurl + 'accounts/api/auth/follow/?following='+id,
+      {}, httpOptions);
+      // return this.http.delete(this.baseurl + '/account/api/auth/follow/?id='+ id, httpOptions);
+    }
 
   getListOfUsers(){
     return this.http.get(this.baseurl + 'accounts/users/');

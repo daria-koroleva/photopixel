@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { PostComponent } from './post/post.component';
+import { FollowingComponent } from './following/following.component';
 
 
 const routes: Routes = [
@@ -29,7 +30,11 @@ const routes: Routes = [
   },  
   {
     path:'post', component: PostComponent
-  }
+  },
+  {
+    path:'following', component: FollowingComponent
+  },
+  
 
 ];
 
@@ -38,3 +43,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+

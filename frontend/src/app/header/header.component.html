@@ -8,9 +8,17 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarsExample09">
-            <form class="form-inline my-2 my-md-0">
-                <input class="form-control" type="text" placeholder="Search" aria-label="Search"(input)="onUserInput($event)">
-            </form>
+           <div style="position: relative;">
+                <form class="form-inline my-2 my-md-0">
+                    <input class="form-control" type="text" placeholder="Search" aria-label="Search"(input)="onUserInput($event)">
+                </form>
+                <ul *ngIf="users&&users.length>0" style="width: 100%;min-height: 100px;position: absolute; top: 40px;margin: 0;background: white;box-shadow: 0 0 10px #eee;">
+                    <li *ngFor="let user of users">
+                        <a class="nav-link"  [routerLink]="'/profile/'+user.id"><span
+                        > {{user.username}}</span></a>
+                           </li>
+                </ul>
+           </div>
 
 
 
