@@ -32,7 +32,7 @@ const routes: Routes = [
     path:'post', component: PostComponent
   },
   {
-    path:'following', component: FollowingComponent
+    path:'following/:id', component: FollowingComponent
   },
   
 

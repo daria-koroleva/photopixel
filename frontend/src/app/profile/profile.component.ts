@@ -13,7 +13,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   private sub: any;
   posts: any; //profile of posts currently being viewed
-  follows:any;
+  // follows:any;
   profileInfo: any; //useer info of profile currently being viewed
   profileId: number=null; //user id of profile currently being viewed
   currentUserName: string; //username of logged in user
@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       });
       this.getProfileInfo();
       this.getProfilePosts();
-      this.getFollowings();
+      // this.getFollowings(this.profileId);
   }
   userLoggedIn(){
     return (localStorage.length != 0);
@@ -63,17 +63,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
   }
 
-  getFollowings(){
-    console.log(1223)
-    this.api.getFollowingsByUserId().pipe(first()).subscribe(
-      post => {
+  // getFollowings(id){
+  //   // console.log(1223)
+  //   if(!id) return;
+  //   this.api.getListOfFollowersOfUserId(id).pipe(first()).subscribe(
+  //     post => {
         
-        this.follows = post;
-        console.log(post,this.follows.length)
-        // this.postsLoaded = true;
-      }
-    );
-  }
+  //       this.follows = post;
+  //       console.log(post,this.follows.length)
+  //       // this.postsLoaded = true;
+  //     }
+  //   );
+  // }
   getProfilePosts(){
     this.api.getAllPostsByUserId(this.profileId).pipe(first()).subscribe(
       post => {
@@ -110,3 +111,4 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
 
 }
+
