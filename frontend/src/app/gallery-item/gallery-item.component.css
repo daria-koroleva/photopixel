@@ -4,6 +4,25 @@ img {
     height: 300px;
 }
 
+.button-delete {
+  float: right;
+  background-color:#808080 ;
+  border: none;
+  color: white; 
+  cursor: pointer;
+  
+}
+
+.button-delete:hover {
+  background-color: #585858;
+}
+
+
+
+.delete-icon {
+  font-size: 1 rem;
+}
+
 .button {
   background-color: white;
   border:none;

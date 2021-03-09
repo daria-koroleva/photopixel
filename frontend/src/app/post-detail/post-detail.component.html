@@ -1,0 +1,15 @@
+<div class="modal">
+    <span class="close" (click)="close()">&times;</span>
+    <div id="caption"></div>
+
+    <div class="post-content">
+
+        <div class="post-picture">
+            <img src="assets\media\images\{{post.photoFileName}}">
+          </div>
+
+        <div class="post-comments">
+              <app-commentPage [post]="post"></app-commentPage>
+      </div>
+    </div>
+</div>
