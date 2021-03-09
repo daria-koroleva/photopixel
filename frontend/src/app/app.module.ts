@@ -17,6 +17,7 @@ import { GalleryComponent } from './gallery/gallery.component';
 import { CommentComponent } from './commentPage/commentPage.component';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { DataService } from './data.service';
+import { PostDetailComponent } from './post-detail/post-detail.component';
 
 
 
@@ -32,6 +33,7 @@ import { DataService } from './data.service';
     GalleryItemComponent,
     GalleryComponent,
     CommentComponent,
+    PostDetailComponent,
 
   ],
   imports: [

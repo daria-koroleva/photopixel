@@ -28,6 +28,8 @@ export class GalleryItemComponent implements OnInit {
   @Input() fileName: string;
   @Input() post: any;
 
+  isPostDetail:boolean;
+
 
   constructor(private api:ApiService, private _router:Router,private data:DataService) {
 
@@ -93,6 +95,20 @@ export class GalleryItemComponent implements OnInit {
   newMessage1(message){
     this.data.changeMessage(message);
   }
+
+  
+  showPostDetail():void{
+
+    this.isPostDetail=true;
+
+  }
+
+  hidePostDetail():void{
+
+    this.isPostDetail=false;
+
+  }
+
 
 
 

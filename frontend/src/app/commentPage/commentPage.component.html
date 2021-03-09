@@ -1,23 +1,16 @@
-
-<div>
-  this is a comment page<br>
-
-  <img src="assets\media\images\{{ message }}"><br><br><br>
-  <!--<img src="assets\media\images\{{ post.photoFileName }}">-->
-  <!--<input
-  (keyup.enter)="createPost(title)" #title
-  type='text' class='form-control'>-->
+<div> 
   <ul class="list-group">
     <li
     *ngFor="let comment of displaycomments"
     class="list-group-item">
     {{ comment }}
     <div>
-      <button (click)="deleteComment(comment)" style="float:right" class="button button1">delete</button>
+
+      <button class="button-delete" (click)="deleteComment(comment)"><i class="bi bi-trash"></i></button>     
     </div>
   </li>
   </ul>
-  <textarea rows="4" cols="50" style="position: relative;" (input)="onUserInput($event)"></textarea><br>
-  <button (click)="uploadComment()" style="float:left" class="button button1">submit</button>
+  <textarea  placeholder="Add a comment ..." class="new-comment" rows="4" style="position: relative;" [(ngModel)]="comment" ></textarea><br>
+  <button (click)="uploadComment()" style="float:left" class="button button1">Post</button>
 </div>
 
