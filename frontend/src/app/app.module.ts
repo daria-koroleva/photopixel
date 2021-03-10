@@ -15,6 +15,10 @@ import { ProfileHeaderComponent } from './profile-header/profile-header.componen
 import { GalleryItemComponent } from './gallery-item/gallery-item.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { FollowingComponent } from './following/following.component';
+import { CommentComponent } from './commentPage/commentPage.component';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { DataService } from './data.service';
+import { PostDetailComponent } from './post-detail/post-detail.component';
 
 
 @NgModule({
@@ -28,7 +32,9 @@ import { FollowingComponent } from './following/following.component';
     ProfileHeaderComponent,
     GalleryItemComponent,
     GalleryComponent,
-    FollowingComponent
+    FollowingComponent,
+    CommentComponent,
+    PostDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +45,7 @@ import { FollowingComponent } from './following/following.component';
     CommonModule,
     NgxImgclickerModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

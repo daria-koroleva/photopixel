@@ -1,0 +1,16 @@
+<div> 
+  <ul class="list-group">
+    <li
+    *ngFor="let comment of displaycomments"
+    class="list-group-item">
+    {{ comment }}
+    <div>
+
+      <button class="button-delete" (click)="deleteComment(comment)"><i class="bi bi-trash"></i></button>     
+    </div>
+  </li>
+  </ul>
+  <textarea  placeholder="Add a comment ..." class="new-comment" rows="4" style="position: relative;" [(ngModel)]="comment" ></textarea><br>
+  <button (click)="uploadComment()" style="float:left" class="button button1">Post</button>
+</div>
+

@@ -6,6 +6,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { PostComponent } from './post/post.component';
 import { FollowingComponent } from './following/following.component';
+import { CommentComponent } from './commentPage/commentPage.component';
 
 
 const routes: Routes = [
@@ -34,7 +35,9 @@ const routes: Routes = [
   {
     path:'following/:id', component: FollowingComponent
   },
-  
+  {
+    path:'comment', component: CommentComponent
+  }
 
 ];
 
@@ -43,4 +46,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-
