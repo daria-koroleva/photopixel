@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { map } from 'rxjs/operators';
 
-const httpOptions = {
+var httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'Authorization': "null",
   })
 }
 
@@ -14,10 +15,17 @@ const httpOptions = {
 export class ApiService {
 
   baseurl: string = "http://127.0.0.1:8000/";
-  
   constructor(private http: HttpClient) { }
 
-   login(username: string, password: string){
+  userLoggedIn(){
+    return (localStorage.length != 0);
+  }
+
+  setTokenHeader(){
+    httpOptions.headers = httpOptions.headers.set('Authorization', 'Token ' + JSON.parse(localStorage.getItem("currentUser")).token);
+  }
+
+  login(username: string, password: string){
     return this.http.post<any>(this.baseurl + 'accounts/api/auth/login/',
     {username, password}, httpOptions).pipe(
       map(user => {
@@ -29,10 +37,92 @@ export class ApiService {
     );
   }
 
-  register(username: string, email: string, password: string){
+  register(username: string, email: string, password: string, profilePhotoFileName:string){
     return this.http.post<any>(this.baseurl + 'accounts/api/auth/register/',
-    {username, email, password}, httpOptions);
+    {username, email, password, profilePhotoFileName}, httpOptions);
   }
 
+
+  newpost(title: string, content: string, photoFileName:string){
+    if (this.userLoggedIn()){
+      //httpOptions.headers = httpOptions.headers.set('Authorization', 'Token ' + JSON.parse(localStorage.getItem("currentUser")).token);
+      this.setTokenHeader();
+    }
+    return this.http.post<any>(this.baseurl + 'posts/post/',
+    {title, content, photoFileName}, httpOptions);
+  }
+
+  getAllPosts(){
+    return this.http.get(this.baseurl + 'posts/post/');
+  }
+  getMyPosts(){
+    if (this.userLoggedIn()){
+      this.setTokenHeader();
+    }
+    return this.http.get(this.baseurl + 'posts/myposts/', httpOptions);
+  }
+
+  getAllPostsByUserId(id:number){
+    if (this.userLoggedIn()){
+      this.setTokenHeader();
+    }
+    return this.http.get(this.baseurl + 'posts/profileposts/'+id, httpOptions);
+  }
+
+  getProfileInfoByUserId(id:number){
+    if (this.userLoggedIn()){
+      this.setTokenHeader();
+    }
+    return this.http.get(this.baseurl + 'accounts/profile/'+id, httpOptions);
+  }
+  getFollowingsByUserId(){
+    if (this.userLoggedIn()){
+      this.setTokenHeader();
+    }
+    return this.http.get(this.baseurl + 'accounts/api/auth/follow/', httpOptions);
+  }
+  saveFileToServer(file:any){
+    return this.http.post(this.baseurl + 'posts/post/saveFile/', file);
+  }
+
+  deleteImage(id:any){
+    if (this.userLoggedIn()){
+      this.setTokenHeader();
+    }
+    return this.http.delete(this.baseurl + 'posts/post/'+ id, httpOptions);
+  }
+  UnFollow(id:any){
+    if (this.userLoggedIn()){
+      this.setTokenHeader();
+    }
+    return this.http.delete(this.baseurl + 'accounts/api/auth/follow/?following='+id, httpOptions);
+  }
+  Follow(id:any){
+    if (this.userLoggedIn()){
+      this.setTokenHeader();
+    }
+    return this.http.post<any>(this.baseurl + 'accounts/api/auth/follow/?following='+id,
+      {}, httpOptions);
+      // return this.http.delete(this.baseurl + '/account/api/auth/follow/?id='+ id, httpOptions);
+    }
+
+  getListOfUsers(){
+    return this.http.get(this.baseurl + 'accounts/users/');
+  }
+  
+  
+  getListOfFollowersOfUserId(id:number){
+    if (this.userLoggedIn()){
+      this.setTokenHeader();
+    }
+    return this.http.get(this.baseurl + 'accounts/followersUser/'+id, httpOptions);
+  }
+
+  getListOfUserIdFollowing(id:number){
+    if (this.userLoggedIn()){
+      this.setTokenHeader();
+    }
+    return this.http.get(this.baseurl + 'accounts/followingUser/'+id, httpOptions);
+  }
 
 }

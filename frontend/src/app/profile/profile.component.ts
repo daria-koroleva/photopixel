@@ -13,6 +13,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   private sub: any;
   posts: any; //profile of posts currently being viewed
+  // follows:any;
   profileInfo: any; //useer info of profile currently being viewed
   profileId: number=null; //user id of profile currently being viewed
   currentUserName: string; //username of logged in user
@@ -27,17 +28,31 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.init(undefined)
+    this._router.events.subscribe(event=>{
+      setTimeout(() => {
+        this.init(undefined)
+      }, 100);
+      // console.log(event.url.,900091)
+      // window.location.reload()
+      // if(event["url"].indexOf("profile")!=-1) window.location.reload()
+      // this.init(event["url"].replace("/profile/", ""))
+    })
+  }
+  init(id){
+    // console.log(111)
     this.setCurrentUserName();
     this.sub = this.activatedRoute.params.subscribe(params => {
-      this.profileId = params.id;
+      this.profileId = id || params.id;
+      console.log(111,this.profileId )
       if (this.profileId == null){
         this.profileId = JSON.parse(localStorage.getItem("currentUser")).id;
       }
       });
       this.getProfileInfo();
       this.getProfilePosts();
+      // this.getFollowings(this.profileId);
   }
-
   userLoggedIn(){
     return (localStorage.length != 0);
   }
@@ -48,7 +63,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
   }
 
-
+  // getFollowings(id){
+  //   // console.log(1223)
+  //   if(!id) return;
+  //   this.api.getListOfFollowersOfUserId(id).pipe(first()).subscribe(
+  //     post => {
+        
+  //       this.follows = post;
+  //       console.log(post,this.follows.length)
+  //       // this.postsLoaded = true;
+  //     }
+  //   );
+  // }
   getProfilePosts(){
     this.api.getAllPostsByUserId(this.profileId).pipe(first()).subscribe(
       post => {
@@ -62,10 +88,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.api.getProfileInfoByUserId(this.profileId).pipe(first()).subscribe(
       profileInfo => {
         this.profileInfo = profileInfo;
+        this.profileInfo.id = this.profileId;
         this.profileInfoLoaded = true;
       }
     );
   }
+  
 
   deleteImage(post:any){
     let post_id = post.id;
@@ -83,3 +111,4 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
 
 }
+

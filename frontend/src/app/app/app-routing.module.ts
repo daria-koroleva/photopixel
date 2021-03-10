@@ -1,15 +1,41 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginGuard } from './login-guard.guard';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
-import { UploadImageComponent } from './uploadImage/uploadImage.component';
+import { PostComponent } from './post/post.component';
+import { FollowingComponent } from './following/following.component';
+
 
 const routes: Routes = [
-  {path:'login', component: LoginComponent},
-  {path:'profile', component: ProfileComponent},
-  {path:'register', component: RegisterComponent},
-  {path: 'uploadImage', component: UploadImageComponent}
+  
+  {
+    path:'login', component: LoginComponent    
+  },
+  {
+    path:'', component: ProfileComponent,
+    canActivate:[LoginGuard]
+  },  
+  {
+    path:'profile', component: ProfileComponent,
+    canActivate:[LoginGuard]
+  },
+  {
+    path:'profile/:id', component: ProfileComponent,
+    canActivate:[LoginGuard]
+  },
+  {
+    path:'register', component: RegisterComponent    
+  },  
+  {
+    path:'post', component: PostComponent
+  },
+  {
+    path:'following/:id', component: FollowingComponent
+  },
+  
+
 ];
 
 @NgModule({
@@ -17,3 +43,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+

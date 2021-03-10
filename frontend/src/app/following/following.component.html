@@ -1,0 +1,4 @@
+<p *ngIf="!(follows && follows.length)">no data</p>
+<div   *ngFor="let follow of follows" class="item-container">
+    follower : {{follow.follower}} , following: {{follow.following}}
+</div>  

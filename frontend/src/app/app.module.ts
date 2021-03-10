@@ -14,11 +14,11 @@ import { CommonModule } from '@angular/common';
 import { ProfileHeaderComponent } from './profile-header/profile-header.component';
 import { GalleryItemComponent } from './gallery-item/gallery-item.component';
 import { GalleryComponent } from './gallery/gallery.component';
+import { FollowingComponent } from './following/following.component';
 import { CommentComponent } from './commentPage/commentPage.component';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { DataService } from './data.service';
 import { PostDetailComponent } from './post-detail/post-detail.component';
-
 
 
 @NgModule({
@@ -32,9 +32,9 @@ import { PostDetailComponent } from './post-detail/post-detail.component';
     ProfileHeaderComponent,
     GalleryItemComponent,
     GalleryComponent,
+    FollowingComponent,
     CommentComponent,
     PostDetailComponent,
-
   ],
   imports: [
     BrowserModule,

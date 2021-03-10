@@ -20,7 +20,7 @@
         <div class="counters">            
 
             <div class="counter"><b>{{postCount}}</b> Posts</div>
-            <div class="counter"><b>4</b><a href="/" target="_blank"> Following</a> </div>  
+            <div class="counter"><b>{{follows?follows.length:0}}</b><a [routerLink]="'/following/'+profileInfo.id" > Following</a> </div>  
 
         </div>        
         <div class="counters">
@@ -30,7 +30,5 @@
 
 </div>
 <div class="dropdown-divider"></div>
-
-
 
 
