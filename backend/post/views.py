@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from rest_framework.exceptions import ValidationError
 from .models import Post,Like,Comment
+from ..account.models import Follow   #add
 from .serializers import PostSerializer,LikeSerializer,CommentSerializer
 from django.core.files.storage import default_storage
 from django.views.decorators.csrf import csrf_exempt
@@ -149,6 +150,14 @@ class CommentCreate(generics.ListCreateAPIView, mixins.DestroyModelMixin):
         else:
             raise ValidationError('you didn\'t comment this post')
 
+            
+class MainFeedFollowingPosts(generics.ListAPIView):   #add
+    serializer_class = PostSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        following = Follow.objects.filter(follower=self.request.user).values_list('following')
+        return Post.objects.filter(poster__in=following)
 
 @csrf_exempt
 def saveFile(request):
