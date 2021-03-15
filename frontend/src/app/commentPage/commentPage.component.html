@@ -3,10 +3,10 @@
     <li
     *ngFor="let comment of displaycomments"
     class="list-group-item">
-    {{ comment }}
+     <b>{{comment.commenter}}</b> {{ comment.content }}
     <div>
 
-      <button class="button-delete" (click)="deleteComment(comment)"><i class="bi bi-trash"></i></button>     
+      <button *ngIf="isCurrentUser(comment.commenter_id)" class="button-delete" (click)="deleteComment(comment.content)"><i class="bi bi-trash"></i></button>     
     </div>
   </li>
   </ul>
