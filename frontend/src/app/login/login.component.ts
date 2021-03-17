@@ -58,7 +58,7 @@ get f() {
   setCurrentUserName(){
     if (this.userLoggedIn()) {
       this.currentUserName = JSON.parse(localStorage.getItem("currentUser")).username;
-      this._router.navigateByUrl("/profile");
+      this._router.navigateByUrl("/profile/"+JSON.parse(localStorage.getItem("currentUser")).id);
     }
   }
 

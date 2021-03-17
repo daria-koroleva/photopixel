@@ -3,7 +3,7 @@
 
 
   <img src="assets\media\images\{{post.photoFileName}}" (click)="showPostDetail()">
-  <button *ngIf="isCurrentUser()" (click)="deleteImage(post)" class="button-delete"><i class="bi bi-trash delete-icon"></i></button>
+  <button (click)="deleteImage(post)" class="button-delete"><i class="bi bi-trash delete-icon"></i></button>
   
   <!-- <ngx-imgclicker [options]="options"></ngx-imgclicker> -->
   <div hidden>

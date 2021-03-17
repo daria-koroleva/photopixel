@@ -10,7 +10,9 @@ import { ActivatedRoute } from '@angular/router';
 export class FollowingComponent implements OnInit {
   follows:any
   constructor(private api : ApiService, private activatedRoute: ActivatedRoute) { }
-
+  data:any;
+  usernamelist=[];
+  useridlist=[];//
   ngOnInit(): void {
     this.getFollowings();
   }
@@ -21,8 +23,19 @@ export class FollowingComponent implements OnInit {
       }
       this.api.getListOfFollowersOfUserId(params.id).pipe(first()).subscribe(
         post => {
+         // this.follows = post;
+          this.data=post;
+          for(let i in post){
+            this.usernamelist.push(post[i].username);
+            //this.useridlist.push(post[i].id);
+          }
           
-          this.follows = post;
+          
+          
+          //console.log(post[0].id);
+          //console.log(this.data[0]);
+          //console.log(this.userid[0]);
+          //this.follows = post;
           // console.log(post,this.follows.length)
           // this.postsLoaded = true;
         }
