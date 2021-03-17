@@ -23,6 +23,7 @@ class RegistrationTestCase(APITestCase):
         response = self.client.post("/accounts/api/auth/register/", data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
+        
 
 class LoginTestCase(APITestCase):
 
@@ -62,6 +63,7 @@ class PostCreateTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
 
+        
 class PostDeleteTestCase(APITestCase):
 
     def setUp(self):
@@ -86,3 +88,56 @@ class PostDeleteTestCase(APITestCase):
         postId = '1'
         response = self.client.delete("/posts/post/"+ postId)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+    
+    
+    
+class CommentDeleteTestCase(APITestCase):
+
+    def setUp(self):
+        self.user = Account.objects.create_user(username ="testcase",
+            email = "test@localhost.app",
+            password = "StrongPassword321",
+            profilePhotoFileName = "item1.jpg")
+        self.token = Token.objects.create(user=self.user)
+        self.api_authentication()
+        self.createPost()
+        
+    def api_authentication(self):
+        self.client.credentials(HTTP_AUTHORIZATION="Token "+self.token.key)
+
+    def createPost(self):
+        return Post.objects.create(title = "Test Title", content = "Test content", photoFileName = "testFilename.jpg", poster=self.user)
+
+    def test_commentcreate(self):
+        postId = '1'
+        context = {
+            "content" : "New Comment",
+        }
+        response = self.client.post('/posts/post/' + postId + '/comment/', context, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+        
+
+class FollowCreateTestCase(APITestCase):
+
+    def setUp(self):
+        self.user = Account.objects.create_user(username ="testcase",
+            email = "test@localhost.app",
+            password = "StrongPassword321",
+            profilePhotoFileName = "item1.jpg")
+        self.token = Token.objects.create(user=self.user)
+        self.api_authentication()
+        self.createSecondUser()
+        
+    def api_authentication(self):
+        self.client.credentials(HTTP_AUTHORIZATION="Token "+self.token.key)
+
+    def createSecondUser(self):
+        return Account.objects.create_user(username ="testcase2",
+            email = "test2@localhost.app",
+            password = "StrongPassword321",
+            profilePhotoFileName = "item1.jpg")
+
+    def test_followcreate(self):
+        response = self.client.post('/accounts/api/auth/follow/?following=2')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
