@@ -91,7 +91,7 @@ class PostDeleteTestCase(APITestCase):
     
     
     
-class CommentDeleteTestCase(APITestCase):
+class CommentCreateTestCase(APITestCase):
 
     def setUp(self):
         self.user = Account.objects.create_user(username ="testcase",
