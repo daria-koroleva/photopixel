@@ -1,0 +1,7 @@
+#posts-mainfeed {
+    display: flex;
+    justify-content: center;
+}
+.posts-card{
+    margin-bottom: 20px;
+}

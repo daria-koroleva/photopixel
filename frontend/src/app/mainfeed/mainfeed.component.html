@@ -1,0 +1,19 @@
+<div class="container">
+
+    <h5 class="ml-5 pl-5 mb-4">Main feed (WIP)</h5>
+    <div id="posts-mainfeed" *ngFor="let post of posts">
+
+
+    <p-card class="posts-card" subheader="Title: {{ post.title }}" [style]="{width: '600px'}" styleClass="p-card-shadow">
+        <ng-template pTemplate="header">
+            <img alt="Card" src="assets\media\images\{{post.photoFileName}}">
+            
+        </ng-template>
+        <p>Posted by: <a href="profile/{{post.poster_id}}">{{ post.poster }}</a></p>
+        <p>Description: {{ post.content }}</p>
+        <p>Comments:</p>
+        <p>Likes: {{ post.likes }}</p>
+    </p-card>
+
+    </div>  
+</div>

@@ -19,6 +19,8 @@ import { CommentComponent } from './commentPage/commentPage.component';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { DataService } from './data.service';
 import { PostDetailComponent } from './post-detail/post-detail.component';
+import { MainfeedComponent } from './mainfeed/mainfeed.component';
+import {CardModule} from 'primeng/card';
 
 
 @NgModule({
@@ -35,6 +37,7 @@ import { PostDetailComponent } from './post-detail/post-detail.component';
     FollowingComponent,
     CommentComponent,
     PostDetailComponent,
+    MainfeedComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ import { PostDetailComponent } from './post-detail/post-detail.component';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    NgxImgclickerModule
+    NgxImgclickerModule,
+    CardModule,
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

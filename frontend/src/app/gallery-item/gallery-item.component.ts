@@ -38,11 +38,7 @@ export class GalleryItemComponent implements OnInit {
 
 
   ngOnInit(): void {
-    //console.log(this.fileName,'filename');
     this.data.currentMessage.subscribe(message => this.message = message)
-    //this.data.currentMessage.subscribe( postId=> postId = postId)
-    console.log('this is profileId : ', this.post.id)
-    console.log(this.post);
   }
 
   title = 'imgclicker-project';
@@ -79,14 +75,9 @@ export class GalleryItemComponent implements OnInit {
   }
 
   commentPage() {
-    console.log('comment button is pressed');
-    console.log('file name is ', this.fileName)
-    console.log('this is profileId : ', this.post.id)
     this.passData.push(this.fileName)
     this.passData.push(this.post.id)
     this.newMessage(this.passData)
-    //this.newMessage1(this.post.id)
-
   }
 
   newMessage(message) {
