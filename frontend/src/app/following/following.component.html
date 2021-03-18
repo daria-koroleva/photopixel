@@ -1,4 +1,6 @@
-<p *ngIf="!(follows && follows.length)">no data</p>
-<div   *ngFor="let follow of follows" class="item-container">
-    follower : {{follow.follower}} , following: {{follow.following}}
+followeruser:<br>
+
+<div   *ngFor="let d of data" class="item-container">    
+     
+     <li><a href="http://localhost:4200/profile/{{d.id}}">{{d.username}}</a></li>         
 </div>  
