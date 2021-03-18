@@ -147,5 +147,11 @@ export class ApiService {
     return this.http.delete(this.baseurl + 'posts/post/' + picId +'/comment/'+commentId,httpOptions)
   }
 
+  getMainFeedPosts(){
+    if(this.userLoggedIn()){
+      this.setTokenHeader();
+    }
+    return this.http.get(this.baseurl + 'posts/mainfeed/',httpOptions)
+  }
 
 }

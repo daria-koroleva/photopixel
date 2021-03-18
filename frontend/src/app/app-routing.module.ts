@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { PostComponent } from './post/post.component';
 import { FollowingComponent } from './following/following.component';
 import { CommentComponent } from './commentPage/commentPage.component';
+import { MainfeedComponent } from './mainfeed/mainfeed.component';
 
 
 const routes: Routes = [
@@ -15,13 +16,13 @@ const routes: Routes = [
     path:'login', component: LoginComponent    
   },
   {
-    path:'', component: ProfileComponent,
+    path:'', component: MainfeedComponent,
     canActivate:[LoginGuard]
   },  
-  {
-    path:'profile', component: ProfileComponent,
-    canActivate:[LoginGuard]
-  },
+  // {
+  //   path:'profile', component: ProfileComponent,
+  //   canActivate:[LoginGuard]
+  // },
   {
     path:'profile/:id', component: ProfileComponent,
     canActivate:[LoginGuard]

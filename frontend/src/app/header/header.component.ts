@@ -66,5 +66,10 @@ export class HeaderComponent implements OnInit {
     
   }
 
+  goToProfile(){
+    console.log("hello");
+    this.redirectTo("profile/"+this.currentUserID);
+  }
+
 }
 

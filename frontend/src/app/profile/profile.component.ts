@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit, OnDestroy {
+export class ProfileComponent implements OnInit {
 
   private sub: any;
   posts: any; //profile of posts currently being viewed
@@ -23,9 +23,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   }
 
-  ngOnDestroy(): void {
-    //this.sub.unsubscribe();
-  }
 
   ngOnInit(): void {
     this.setCurrentUserName();
@@ -49,18 +46,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
   }
 
-  // getFollowings(id){
-  //   // console.log(1223)
-  //   if(!id) return;
-  //   this.api.getListOfFollowersOfUserId(id).pipe(first()).subscribe(
-  //     post => {
-        
-  //       this.follows = post;
-  //       console.log(post,this.follows.length)
-  //       // this.postsLoaded = true;
-  //     }
-  //   );
-  // }
   getProfilePosts(){
     this.api.getAllPostsByUserId(this.profileId).pipe(first()).subscribe(
       post => {

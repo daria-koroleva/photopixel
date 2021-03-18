@@ -80,7 +80,7 @@ class FollowView(APIView):
         f1 = Follow(following_id=following, follower_id=request.user.id)
         try:
             f1.save()
-            return HttpResponse(status=200)
+            return HttpResponse(status=201) #changed from 200 OK to 201 Created
         except:
             return HttpResponse(status=400)
 
