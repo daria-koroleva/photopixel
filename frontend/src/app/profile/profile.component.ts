@@ -24,21 +24,35 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    //this.sub.unsubscribe();
+    this.sub.unsubscribe();
   }
 
   ngOnInit(): void {
+    this.init(undefined)
+    this._router.events.subscribe(event=>{
+      setTimeout(() => {
+        this.init(undefined)
+      }, 100);
+      // console.log(event.url.,900091)
+      // window.location.reload()
+      // if(event["url"].indexOf("profile")!=-1) window.location.reload()
+      // this.init(event["url"].replace("/profile/", ""))
+    })
+  }
+  init(id){
+    // console.log(111)
     this.setCurrentUserName();
     this.sub = this.activatedRoute.params.subscribe(params => {
-      this.profileId = params.id;
+      this.profileId = id || params.id;
+      console.log(111,this.profileId )
       if (this.profileId == null){
         this.profileId = JSON.parse(localStorage.getItem("currentUser")).id;
       }
       });
       this.getProfileInfo();
       this.getProfilePosts();
-    }
-    
+      // this.getFollowings(this.profileId);
+  }
   userLoggedIn(){
     return (localStorage.length != 0);
   }

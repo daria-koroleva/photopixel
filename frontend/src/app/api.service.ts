@@ -117,7 +117,6 @@ export class ApiService {
     }
     return this.http.get(this.baseurl + 'accounts/followersUser/'+id, httpOptions);
   }
-  
 
   getListOfUserIdFollowing(id:number){
     if (this.userLoggedIn()){

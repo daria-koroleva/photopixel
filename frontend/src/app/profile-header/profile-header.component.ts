@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, SimpleChange, Output, EventEmitter } from '@angular/core';
 import { first, map } from 'rxjs/operators'
 import { ApiService } from './../api.service';
-import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-profile-header',
   templateUrl: './profile-header.component.html',
@@ -15,37 +14,29 @@ export class ProfileHeaderComponent implements OnInit {
   // @Input() follows:Array<Object>;
   follows:any;
   currentUserName:string;
-  profileId: number;
-  user:any;
 
   @Output() outer = new EventEmitter();
-  constructor(private api : ApiService, private activatedRoute: ActivatedRoute) { }
+  constructor(private api : ApiService) { }
  
   ngOnInit(): void {
     this.setCurrentUserName();
     
     
     this.isFollow = false
-    //this.getFollowings()
+    this.getFollowings()
     
     // this.getFollowings();
     
   }
   ngOnChanges(){
     let obj = arguments[0]
-    console.log(arguments,8000)
+    console.log(obj.profileInfo,8000)
     // this.isFollow = false
-    if(obj.profileInfo){
-      this.activatedRoute.params.subscribe(params => {
-        if(this.profileId == (params.id)) return;
-        this.profileId = params.id;
-        this.getFollowings()
-      })
-    }
+    if(obj.profileInfo) this.getFollowings()
     
   }
   getFollowings(){
-    let id = this.profileId;
+    let id = this.profileInfo.id;
     let user =  JSON.parse(localStorage.getItem("currentUser"));
     this.isFollow = false
     this.follows = []
@@ -57,7 +48,7 @@ export class ProfileHeaderComponent implements OnInit {
         this.follows = post;
         if(this.follows){
           this.follows.map(item=>{
-            if(item["id"] == this.user.id){
+            if(item["follower"] == user.id){
               this.isFollow = true;
             }
           })
@@ -77,7 +68,7 @@ export class ProfileHeaderComponent implements OnInit {
           // window.location.reload()
           this.getFollowings()
           // this.outer.emit()
-          //this.isFollow = !this.isFollow;
+          this.isFollow = !this.isFollow;
           // this.posts = null;
           // this._router.navigateByUrl("");
         }
@@ -90,7 +81,7 @@ export class ProfileHeaderComponent implements OnInit {
           // window.location.reload()
           this.getFollowings()
           // this.outer.emit()
-         // this.isFollow = !this.isFollow;
+          this.isFollow = !this.isFollow;
           // this.posts = null;
           // this._router.navigateByUrl("");
         }
@@ -104,8 +95,8 @@ export class ProfileHeaderComponent implements OnInit {
 
 
   setCurrentUserName(){    
-      this.user =  JSON.parse(localStorage.getItem("currentUser"));
-      this.currentUserName =this.user.username;
+      let user =  JSON.parse(localStorage.getItem("currentUser"));
+      this.currentUserName =user.username;
      
   }
   
