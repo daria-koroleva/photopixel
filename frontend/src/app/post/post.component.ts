@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ApiService } from './../api.service';
 import { first } from 'rxjs/operators'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post',
@@ -14,7 +15,7 @@ export class PostComponent implements OnInit {
   myForm: FormGroup;
   currentUserName: string;
   posted: boolean = false;
-  constructor(private api : ApiService) { }
+  constructor(private api : ApiService, private _router:Router) { }
 
   ngOnInit(): void {
     this.myForm = new FormGroup({
@@ -35,6 +36,7 @@ export class PostComponent implements OnInit {
         console.log(data);
         this.posted = true;
         this.saveFile();
+        this._router.navigateByUrl("/profile/"+JSON.parse(localStorage.getItem("currentUser")).id);
       }
     )
     
