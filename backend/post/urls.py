@@ -15,5 +15,6 @@ urlpatterns = [
     path('post/<int:pk>/comment/<int:comment_id>/', views.CommentRetrieveUpdateDestroy.as_view()),
     path('post/<int:pk>/comments', views.CommentListByPost.as_view()),
     path('post/<int:pk>/likes', views.LikeListByPost.as_view()),
+    path('mainfeed/',views.MainFeedFollowingPosts.as_view()), #add
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns = format_suffix_patterns(urlpatterns)

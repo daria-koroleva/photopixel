@@ -18,20 +18,20 @@ export class GalleryItemComponent implements OnInit {
 
   message: string;
   postId: any;
-  passData: string[]=[];
+  passData: string[] = [];
 
   posts: any;
-  profileId: number=null;
-  profileInfoLoaded :boolean = false;
-  postsLoaded :boolean = false;
+  profileId: number = null;
+  profileInfoLoaded: boolean = false;
+  postsLoaded: boolean = false;
 
   @Input() fileName: string;
   @Input() post: any;
 
-  isPostDetail:boolean;
+  isPostDetail: boolean;
 
 
-  constructor(private api:ApiService, private _router:Router,private data:DataService) {
+  constructor(private api: ApiService, private _router: Router, private data: DataService) {
 
   }
 
@@ -41,7 +41,8 @@ export class GalleryItemComponent implements OnInit {
     //console.log(this.fileName,'filename');
     this.data.currentMessage.subscribe(message => this.message = message)
     //this.data.currentMessage.subscribe( postId=> postId = postId)
-    console.log('this is profileId : ',this.post.id)
+    console.log('this is profileId : ', this.post.id)
+    console.log(this.post);
   }
 
   title = 'imgclicker-project';
@@ -53,7 +54,7 @@ export class GalleryItemComponent implements OnInit {
 
 
 
-  getProfilePosts(){
+  getProfilePosts() {
 
     this.api.getAllPostsByUserId(this.profileId).pipe(first()).subscribe(
       post => {
@@ -64,7 +65,7 @@ export class GalleryItemComponent implements OnInit {
     );
   }
 
-  deleteImage(post:any){
+  deleteImage(post: any) {
     let post_id = post.id;
     console.log("delete image button is pressed");
     console.log(post_id);
@@ -77,10 +78,10 @@ export class GalleryItemComponent implements OnInit {
     );
   }
 
-  commentPage(){
+  commentPage() {
     console.log('comment button is pressed');
-    console.log('file name is ',this.fileName)
-    console.log('this is profileId : ',this.post.id)
+    console.log('file name is ', this.fileName)
+    console.log('this is profileId : ', this.post.id)
     this.passData.push(this.fileName)
     this.passData.push(this.post.id)
     this.newMessage(this.passData)
@@ -88,25 +89,31 @@ export class GalleryItemComponent implements OnInit {
 
   }
 
-  newMessage(message){
+  newMessage(message) {
     this.data.changeMessage(message);
   }
 
-  newMessage1(message){
+  newMessage1(message) {
     this.data.changeMessage(message);
   }
 
-  
-  showPostDetail():void{
 
-    this.isPostDetail=true;
+  showPostDetail(): void {
+
+    this.isPostDetail = true;
 
   }
 
-  hidePostDetail():void{
+  hidePostDetail(): void {
 
-    this.isPostDetail=false;
+    this.isPostDetail = false;
 
+  }
+
+
+
+  isCurrentUser(): boolean {
+    return (JSON.parse(localStorage.getItem("currentUser")).id == this.post.poster_id);
   }
 
 
