@@ -3,18 +3,4 @@
     <app-profile-header *ngIf="postsLoaded && profileInfoLoaded" [profileInfo]="profileInfo" [postCount]="posts.length" [follows]="follows" (outer)="getFollowings()"></app-profile-header>
     <app-gallery [posts]="posts"></app-gallery>
 
-    <!--<div *ngFor="let post of posts">
-        <ul *ngIf="post.poster == currentUserName">
-            <li>{{ post.id }}</li>
-            <li>{{ post.title }}</li>
-            <li>{{ post.content }}</li>
-            <li>{{ post.date_posted }}</li>
-            <li>{{ post.photoFileName }}</li>
-            <img width="100px" height="100px" src="/assets/media/images/{{ post.photoFileName }}" alt="">
-            <ngx-imgclicker [options]="options"></ngx-imgclicker>
-            <button (click)="deleteImage(post)" style="float:right" >Delete</button>
-
-        </ul>
-    </div>-->
-
 </div>

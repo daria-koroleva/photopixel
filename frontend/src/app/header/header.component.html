@@ -8,26 +8,25 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarsExample09">
-           <div style="position: relative;">
+            <div style="position: relative;">
                 <form class="form-inline my-2 my-md-0">
-                    <input id="search-box" class="form-control" type="text" placeholder="Search" aria-label="Search" (input)="onUserInput($event)">
+                    <input id="search-box" class="form-control" type="text" placeholder="Search" aria-label="Search"
+                        (input)="onUserInput($event)">
                 </form>
-                <ul *ngIf="users&&users.length>0" style="width: 100%;min-height: 100px;position: absolute; top: 40px;margin: 0;background: white;box-shadow: 0 0 10px #eee;">
+                <ul *ngIf="users&&users.length>0"
+                    style="width: 100%;min-height: 100px;position: absolute; top: 40px;margin: 0;background: white;box-shadow: 0 0 10px #eee;">
                     <li *ngFor="let user of users">
-                        <a class="nav-link"><span (click)="changeProfile(user.id)"
-                        > {{user.username}}</span></a>
-                           </li>
+                        <a class="nav-link"><span (click)="changeProfile(user.id)"> {{user.username}}</span></a>
+                    </li>
                 </ul>
-           </div>
-
-
-
+            </div>
 
             <ul class="navbar-nav ml-auto d-flex align-items-center">
 
-                 <li class="nav-item">
-                     <a class="nav-link" routerLink="/post">Post</a>
-                 </li>   
+                <li class="nav-item">                   
+                    <a class="nav-link"  routerLink="/post"><i class="bi bi-file-plus-fill header-icon"></i><span
+                        ></span></a>
+                </li>
 
                 <li class="nav-item active">
                     <a class="nav-link" href="/"><i class="bi bi-house-fill header-icon"></i><span
@@ -35,15 +34,16 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown09" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false" (click)="goToProfile()"><i class="bi bi-person-circle header-icon"></i></a>
+                        aria-haspopup="true" aria-expanded="false" (click)="goToProfile()"><i
+                            class="bi bi-person-circle header-icon"></i></a>
                     <div class="dropdown-menu" aria-labelledby="dropdown09">
-                        <a class="dropdown-item" style="pointer-events: none; text-decoration: line-through;" href="">Settings</a>
+                        <a class="dropdown-item" style="pointer-events: none; text-decoration: line-through;"
+                            href="">Settings</a>
                         <a class="dropdown-item" href="" (click)="logout()">Log out</a>
                     </div>
                 </li>
             </ul>
         </div>
     </nav>
-   
-</div>
 
+</div>

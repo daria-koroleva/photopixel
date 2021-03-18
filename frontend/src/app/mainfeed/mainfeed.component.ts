@@ -20,8 +20,7 @@ export class MainfeedComponent implements OnInit {
   getMainFeedPosts(){
     this.api.getMainFeedPosts().subscribe(
       data => {
-        this.posts = data;
-        console.log(data);
+        this.posts = data;     
       }
     )
   }

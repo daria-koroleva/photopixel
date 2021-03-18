@@ -45,7 +45,6 @@ export class ApiService {
 
   newpost(title: string, content: string, photoFileName:string){
     if (this.userLoggedIn()){
-      //httpOptions.headers = httpOptions.headers.set('Authorization', 'Token ' + JSON.parse(localStorage.getItem("currentUser")).token);
       this.setTokenHeader();
     }
     return this.http.post<any>(this.baseurl + 'posts/post/',

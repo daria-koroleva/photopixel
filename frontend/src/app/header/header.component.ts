@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { ApiService } from './../api.service';
 
 @Component({
@@ -59,7 +59,7 @@ export class HeaderComponent implements OnInit {
  }
 
   changeProfile(id:string){
-    console.log(id);
+    
     this.users = [];
     this.searchBox.value = '';
     this.redirectTo("profile/"+id);
@@ -67,7 +67,7 @@ export class HeaderComponent implements OnInit {
   }
 
   goToProfile(){
-    console.log("hello");
+   
     this.redirectTo("profile/"+this.currentUserID);
   }
 

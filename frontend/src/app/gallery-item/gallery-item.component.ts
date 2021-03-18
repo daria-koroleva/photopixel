@@ -1,11 +1,8 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
-import { Options } from '@flywine93/ngx-imgclicker';
-import { Router, RouterLink } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from './../api.service';
-import { first, map } from 'rxjs/operators';
-import { post } from 'jquery';
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { DataService } from '../data.service'
+import { first } from 'rxjs/operators';
+import { DataService } from '../data.service';
 
 
 @Component({
@@ -13,8 +10,8 @@ import { DataService } from '../data.service'
   templateUrl: './gallery-item.component.html',
   styleUrls: ['./gallery-item.component.css']
 })
-export class GalleryItemComponent implements OnInit {
 
+export class GalleryItemComponent implements OnInit {
 
   message: string;
   postId: any;
@@ -35,19 +32,9 @@ export class GalleryItemComponent implements OnInit {
 
   }
 
-
-
   ngOnInit(): void {
     this.data.currentMessage.subscribe(message => this.message = message)
   }
-
-  title = 'imgclicker-project';
-  options: Options = {
-    urlCallback: (url: string) => {
-      return url;
-    }
-  };
-
 
 
   getProfilePosts() {
@@ -62,12 +49,9 @@ export class GalleryItemComponent implements OnInit {
   }
 
   deleteImage(post: any) {
-    let post_id = post.id;
-    console.log("delete image button is pressed");
-    console.log(post_id);
+    let post_id = post.id;   
     this.api.deleteImage(post_id).subscribe(
       data => {
-        console.log(data);
         this.posts = null;
         this._router.navigateByUrl("");
       }
@@ -101,13 +85,8 @@ export class GalleryItemComponent implements OnInit {
 
   }
 
-
-
   isCurrentUser(): boolean {
     return (JSON.parse(localStorage.getItem("currentUser")).id == this.post.poster_id);
   }
-
-
-
 
 }

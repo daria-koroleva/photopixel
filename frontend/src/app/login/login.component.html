@@ -1,5 +1,5 @@
 <form [formGroup]='myForm' class="form-signin" (ngSubmit)="submitLoginForm()" *ngIf="!userLoggedIn()"> 
-    <!-- <img class="mb-4" src="assets/images/logo.png" alt="" width="72" height="72"> -->
+
     <i class="bi bi-camera-fill logo-picture"></i>  
     <span class="logo">PhotoPixel</span>
 
@@ -24,24 +24,3 @@
     </label>
     <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
   </div>
-<!-- <p>Login</p>
-
-
-<form [formGroup]='myForm' (ngSubmit)="submitLoginForm()" *ngIf="!userLoggedIn()">
-    <div>
-        <label for="email">Email</label>
-        <input type="text" formControlName="email">
-    </div>
-    <div>
-        <label for="password">Password</label>
-        <input type="password" formControlName="password">
-    </div>
-    <button type="submit">Login</button>
-</form>
-
-<button type="button" (click)="logout()">Logout</button> -->
-
-
-<!--<h4>{{userData.email}}</h4>-->
-
-<!-- <h2 *ngIf="userLoggedIn()"> {{currentUserName}} is logged in</h2> -->

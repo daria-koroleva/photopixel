@@ -19,10 +19,6 @@ const routes: Routes = [
     path:'', component: MainfeedComponent,
     canActivate:[LoginGuard]
   },  
-  // {
-  //   path:'profile', component: ProfileComponent,
-  //   canActivate:[LoginGuard]
-  // },
   {
     path:'profile/:id', component: ProfileComponent,
     canActivate:[LoginGuard]
