@@ -103,11 +103,12 @@ class FollowView(APIView):
     
 
 class FollowersUserIDList(generics.ListAPIView): #list of users following this user id
-    serializer_class = FollowSerializer
+    serializer_class = UserListSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
-        return Follow.objects.filter(following=self.kwargs['pk'])
+        followers = Follow.objects.filter(following=self.kwargs['pk']).values_list('follower')
+        return Account.objects.filter(id__in=followers)
 
 
 class FollowingUserIDList(generics.ListAPIView): #list of users that this user id follows

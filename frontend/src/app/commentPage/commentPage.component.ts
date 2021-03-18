@@ -20,8 +20,6 @@ export class CommentComponent {
   comment: string;
 
 
-
-
   constructor(private api:ApiService) { }
 
 
@@ -41,10 +39,9 @@ export class CommentComponent {
       console.log(res);
       this.rawdata = res;
       for(let i in res){
-        //this.displaycomments.push(res[i].content)
-        this.displaycomments.push(res[i]);
+        this.displaycomments.push(res[i].content)
       }
-      console.log("Display comments" +this.displaycomments)
+      console.log(this.displaycomments)
     })
   }
 
@@ -82,14 +79,6 @@ export class CommentComponent {
       this.requestComment();
     })
   }
-
-
-  isCurrentUser(id:number):boolean{
-      return (JSON.parse(localStorage.getItem("currentUser")).id==id)
-  }
-  
-
-
 
 
 }
