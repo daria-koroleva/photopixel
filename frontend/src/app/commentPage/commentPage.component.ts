@@ -19,9 +19,6 @@ export class CommentComponent {
   postsLoaded :boolean = false;
   comment: string;
 
-
-
-
   constructor(private api:ApiService) { }
 
 
@@ -37,14 +34,11 @@ export class CommentComponent {
     this.displaycomments=[];
     
     
-    this.api.requestComment(this.post.id).subscribe(res=>{
-      console.log(res);
+    this.api.requestComment(this.post.id).subscribe(res=>{     
       this.rawdata = res;
-      for(let i in res){
-        //this.displaycomments.push(res[i].content)
+      for(let i in res){       
         this.displaycomments.push(res[i]);
-      }
-      console.log("Display comments" +this.displaycomments)
+      }     
     })
   }
 
@@ -58,27 +52,22 @@ export class CommentComponent {
   }
 
   uploadComment(){
-    console.log('this is postId',this.post.id);
-    console.log('this is comment',this.comment);
-    
+   
     this.api.uploadComment(this.post.id,this.comment).
-    subscribe(res=>{
-      console.log(res); 
+    subscribe(res=>{     
       this.comment="";     
       this.requestComment();
     })
   }
 
   deleteComment(comment:string){  
-    for(let i in this.rawdata){
-      console.log(this.rawdata[i])
+    for(let i in this.rawdata){      
       if(this.rawdata[i].content==comment){
         this.commentId = this.rawdata[i].id
       }
     }
     this.api.deleteComment(this.post.id, this.commentId).
     subscribe(res=>{
-      console.log(res);
       this.requestComment();
     })
   }

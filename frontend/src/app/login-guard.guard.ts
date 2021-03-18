@@ -15,8 +15,8 @@ export class LoginGuard implements CanActivate {
     }
 
 
-    userLoggedIn(){
+    userLoggedIn() {
         return (localStorage.length != 0);
-      }
-    
+    }
+
 }
