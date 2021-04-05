@@ -150,7 +150,7 @@ class CommentCreate(generics.ListCreateAPIView, mixins.DestroyModelMixin):
         else:
             raise ValidationError('you didn\'t comment this post')
 
-            
+
 class MainFeedFollowingPosts(generics.ListAPIView):   #add
     serializer_class = PostSerializer
     permission_classes = [permissions.IsAuthenticated]
