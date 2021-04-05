@@ -17,7 +17,7 @@ class PostSerializer(serializers.ModelSerializer):
 class LikeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Like
-        fields = ['id']
+        fields = ['liker']
 
 
 

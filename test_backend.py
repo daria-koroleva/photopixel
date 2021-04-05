@@ -23,7 +23,7 @@ class RegistrationTestCase(APITestCase):
         response = self.client.post("/accounts/api/auth/register/", data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-        
+
 
 class LoginTestCase(APITestCase):
 
@@ -39,9 +39,9 @@ class LoginTestCase(APITestCase):
         }
         response = self.client.post("/accounts/api/auth/login/", data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        
-        
-        
+
+
+
 class PostCreateTestCase(APITestCase):
 
     def setUp(self):
@@ -63,7 +63,7 @@ class PostCreateTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
 
-        
+
 class PostDeleteTestCase(APITestCase):
 
     def setUp(self):
@@ -74,7 +74,7 @@ class PostDeleteTestCase(APITestCase):
         self.token = Token.objects.create(user=self.user)
         self.api_authentication()
         self.createPost()
-        
+
     def api_authentication(self):
         self.client.credentials(HTTP_AUTHORIZATION="Token "+self.token.key)
 
@@ -88,9 +88,9 @@ class PostDeleteTestCase(APITestCase):
         postId = '1'
         response = self.client.delete("/posts/post/"+ postId)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-    
-    
-    
+
+
+
 class CommentCreateTestCase(APITestCase):
 
     def setUp(self):
@@ -101,7 +101,7 @@ class CommentCreateTestCase(APITestCase):
         self.token = Token.objects.create(user=self.user)
         self.api_authentication()
         self.createPost()
-        
+
     def api_authentication(self):
         self.client.credentials(HTTP_AUTHORIZATION="Token "+self.token.key)
 
@@ -116,7 +116,7 @@ class CommentCreateTestCase(APITestCase):
         response = self.client.post('/posts/post/' + postId + '/comment/', context, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-        
+
 
 class FollowCreateTestCase(APITestCase):
 
@@ -128,7 +128,7 @@ class FollowCreateTestCase(APITestCase):
         self.token = Token.objects.create(user=self.user)
         self.api_authentication()
         self.createSecondUser()
-        
+
     def api_authentication(self):
         self.client.credentials(HTTP_AUTHORIZATION="Token "+self.token.key)
 
