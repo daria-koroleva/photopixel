@@ -153,4 +153,33 @@ export class ApiService {
     return this.http.get(this.baseurl + 'posts/mainfeed/',httpOptions)
   }
 
+
+
+  like(picId:any){
+    if (this.userLoggedIn()){
+      this.setTokenHeader();
+    }
+    return this.http.post<any>(this.baseurl + 'posts/post/'+picId+'/like' , {}, httpOptions);
+     
+    }
+
+    unlike(picId:any){
+      if (this.userLoggedIn()){
+        this.setTokenHeader();
+      }
+      return this.http.delete<any>(this.baseurl + 'posts/post/'+picId+'/like' , httpOptions);
+       
+      }
+
+
+      getLikesByPost(picId:any){
+
+        if(this.userLoggedIn()){
+          this.setTokenHeader();
+        }
+    
+        return this.http.get(this.baseurl + 'posts/post/'+picId+'/likes',httpOptions)
+      }
+    
+
 }

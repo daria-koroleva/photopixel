@@ -1,0 +1,37 @@
+
+.button {
+    background-color: white;
+    border:none;
+    color: black;
+    padding: 3px 6px; 
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+  }
+
+
+.button-like {
+    float: left;
+    background-color: white ;
+    border: none;
+    /* color: black;  */
+    cursor: pointer;
+    
+  }
+  
+  /* .button-like:hover {
+    background-color: #585858;
+  }
+   */
+
+  .like-icon {
+  font-size: 1.5rem;  
+}
+
+.unlike-icon {
+    font-size: 1.5rem;
+    color: #ed4956;
+  }

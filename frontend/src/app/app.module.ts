@@ -21,6 +21,7 @@ import { DataService } from './data.service';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { MainfeedComponent } from './mainfeed/mainfeed.component';
 import {CardModule} from 'primeng/card';
+import { LikeComponent } from './like/like.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import {CardModule} from 'primeng/card';
     CommentComponent,
     PostDetailComponent,
     MainfeedComponent,
+    LikeComponent,
   ],
   imports: [
     BrowserModule,

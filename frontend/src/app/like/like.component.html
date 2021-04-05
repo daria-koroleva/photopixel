@@ -1,0 +1,11 @@
+<button  *ngIf="!isliked" (click)="like()" class="button-like">
+    <i class="bi bi-heart like-icon"></i>
+    {{likes.length}} Likes
+</button>
+
+<button *ngIf="isliked" class="button-like" (click)="unlike()">
+    <i class="bi bi-heart-fill unlike-icon"></i>
+    {{likes.length}} Likes
+</button>
+
+
