@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { map } from 'rxjs/operators';
 
+
 var httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
@@ -155,11 +156,11 @@ export class ApiService {
 
 
 
-  like(picId:any){
+  like(picId:any, liker:any){
     if (this.userLoggedIn()){
       this.setTokenHeader();
     }
-    return this.http.post<any>(this.baseurl + 'posts/post/'+picId+'/like' , {}, httpOptions);
+    return this.http.post<any>(this.baseurl + 'posts/post/'+picId+'/like' , {liker:liker}, httpOptions);
      
     }
 

@@ -1,0 +1,49 @@
+img {
+    display: block;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    margin-left: auto;
+    margin-right: auto;    
+  }
+
+.container-profile{
+    display: flex;
+    min-width: 300px;
+    height: 70px;
+    
+}
+
+.picture-column{ 
+  width: 30%;     
+}
+
+.profile-link-column{
+  padding-top: 20px;
+  width: 70%;
+}
+
+
+
+a:link{
+    color:black;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  a:visited {
+    color: black;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  a:hover {
+    color: black;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  a:active {
+    color: black;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+
+

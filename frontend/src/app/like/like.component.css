@@ -16,17 +16,12 @@
 .button-like {
     float: left;
     background-color: white ;
-    border: none;
-    /* color: black;  */
+    border: none; 
     cursor: pointer;
     
   }
   
-  /* .button-like:hover {
-    background-color: #585858;
-  }
-   */
-
+ 
   .like-icon {
   font-size: 1.5rem;  
 }
@@ -35,3 +30,20 @@
     font-size: 1.5rem;
     color: #ed4956;
   }
+
+
+.button-link{
+  border:none;
+  background-color: inherit;
+  font-size: 16px;
+  cursor:pointer;
+  display: inline-block;
+  padding-top: 6px;
+}
+
+
+.button-link:hover{
+  background: #eee;
+}
+  
+

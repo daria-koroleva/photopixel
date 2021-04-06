@@ -1,0 +1,10 @@
+<div class="container-profile" *ngIf="profileInfo">
+
+    <div class="picture-column" >
+        <img src="assets\media\images\{{profileInfo.profilePhotoFileName}}" alt="Avatar">
+    </div>
+    <div class="profile-link-column">
+        <a href="http://localhost:4200/profile/{{id}}">{{profileInfo.username}}</a>
+    </div>
+
+</div>

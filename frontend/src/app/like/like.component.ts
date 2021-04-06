@@ -13,6 +13,8 @@ export class LikeComponent implements OnInit {
   likes:any=[];
   isliked:boolean=true;
 
+  isShowLikers:boolean;
+
   constructor(private api:ApiService) { }
 
   ngOnInit(): void {
@@ -25,7 +27,7 @@ export class LikeComponent implements OnInit {
     //console.log("I like this");
     console.log(this.postid);
 
-    this.api.like(this.postid).subscribe(response => {      
+    this.api.like(this.postid, this.getLiker()).subscribe(response => {      
       this.updateLikes();
       
       this.isliked =true;
@@ -39,19 +41,39 @@ export class LikeComponent implements OnInit {
     });
   }
 
+  
 
   updateLikes(){
 
 
     this.api.getLikesByPost(this.postid).subscribe(
-      likes => {
-         this.likes=likes;
-    }
-    )
+      likes => {       
+         this.likes=likes;         
+         this.isliked=this.likes.filter( like => like.liker ==this.getLiker()).length > 0;
+
+    })
+
+
 
   }
 
 
+  getLiker(){
+
+   return JSON.parse(localStorage.getItem("currentUser")).id;
+
+
+  }
+
+  showLikers(){
+    this.isShowLikers = true;    
+  }
+
+  closeLikers(){
+    this.isShowLikers=false;
+  }
+
+ 
 
   
 
