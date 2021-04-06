@@ -13,6 +13,7 @@
         <p>Description: {{ post.content }}</p>
         <p>Comments:</p>
         <p>Likes: {{ post.likes }}</p>
+        <app-like  [postid]="post.id"></app-like>
     </p-card>
 
     </div>  

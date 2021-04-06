@@ -1,0 +1,16 @@
+<div class="modal">
+    <span class="close" (click)="close()">&times;</span>
+    <div class="like-content">
+
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div class="title">Likes</div>
+            </li>
+
+            <li *ngFor="let like of likes" class="list-group-item">
+                <app-mini-profile [id]="like.liker"></app-mini-profile>
+            </li>
+        </ul>
+    </div>
+
+</div>

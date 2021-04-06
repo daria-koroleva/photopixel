@@ -1,0 +1,17 @@
+<button  *ngIf="!isliked" (click)="like()" class="button-like">
+    <i class="bi bi-heart like-icon"></i>    
+</button>
+
+
+<button *ngIf="isliked" class="button-like" (click)="unlike()">     
+    <i class="bi bi-heart-fill unlike-icon"></i>    
+</button>
+
+<button class="button-link" (click)="showLikers()">     
+    {{likes.length}} Likes
+</button>
+ 
+
+
+<app-like-list [likes]="likes"  (closed)="closeLikers()"  *ngIf="isShowLikers" ></app-like-list>
+

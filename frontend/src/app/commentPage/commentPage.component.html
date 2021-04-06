@@ -10,7 +10,11 @@
     </div>
   </li>
   </ul>
+  <app-like  [postid]="post.id"></app-like>
+
   <textarea  placeholder="Add a comment ..." class="new-comment" rows="4" style="position: relative;" [(ngModel)]="comment" ></textarea><br>
   <button (click)="uploadComment()" style="float:left" class="button button1">Post</button>
+  
+ 
 </div>
 

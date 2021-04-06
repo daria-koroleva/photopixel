@@ -1,0 +1,49 @@
+
+.button {
+    background-color: white;
+    border:none;
+    color: black;
+    padding: 3px 6px; 
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+  }
+
+
+.button-like {
+    float: left;
+    background-color: white ;
+    border: none; 
+    cursor: pointer;
+    
+  }
+  
+ 
+  .like-icon {
+  font-size: 1.5rem;  
+}
+
+.unlike-icon {
+    font-size: 1.5rem;
+    color: #ed4956;
+  }
+
+
+.button-link{
+  border:none;
+  background-color: inherit;
+  font-size: 16px;
+  cursor:pointer;
+  display: inline-block;
+  padding-top: 6px;
+}
+
+
+.button-link:hover{
+  background: #eee;
+}
+  
+

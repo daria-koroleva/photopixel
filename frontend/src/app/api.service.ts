@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { map } from 'rxjs/operators';
 
+
 var httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
@@ -152,5 +153,34 @@ export class ApiService {
     }
     return this.http.get(this.baseurl + 'posts/mainfeed/',httpOptions)
   }
+
+
+
+  like(picId:any, liker:any){
+    if (this.userLoggedIn()){
+      this.setTokenHeader();
+    }
+    return this.http.post<any>(this.baseurl + 'posts/post/'+picId+'/like' , {liker:liker}, httpOptions);
+     
+    }
+
+    unlike(picId:any){
+      if (this.userLoggedIn()){
+        this.setTokenHeader();
+      }
+      return this.http.delete<any>(this.baseurl + 'posts/post/'+picId+'/like' , httpOptions);
+       
+      }
+
+
+      getLikesByPost(picId:any){
+
+        if(this.userLoggedIn()){
+          this.setTokenHeader();
+        }
+    
+        return this.http.get(this.baseurl + 'posts/post/'+picId+'/likes',httpOptions)
+      }
+    
 
 }
