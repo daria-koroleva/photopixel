@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from rest_framework.exceptions import ValidationError
 from .models import Post,Like,Comment
-from ..account.models import Follow   #add
+from ..account.models import Follow
 from .serializers import PostSerializer,LikeSerializer,CommentSerializer
 from django.core.files.storage import default_storage
 from django.views.decorators.csrf import csrf_exempt
@@ -60,7 +60,7 @@ class PostListByUserID(generics.ListAPIView):
 
 
 
-class LikeCreate(generics.ListCreateAPIView, mixins.DestroyModelMixin):
+class LikeCreateDestroy(generics.ListCreateAPIView, mixins.DestroyModelMixin):
     serializer_class = LikeSerializer
     permission_classes = [permissions.IsAuthenticated]
 
@@ -81,6 +81,8 @@ class LikeCreate(generics.ListCreateAPIView, mixins.DestroyModelMixin):
             return Response(status=status.HTTP_204_NO_CONTENT)
         else:
             raise ValidationError('you didn\'t like this post')
+
+
 class  LikeListByPost(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = LikeSerializer
