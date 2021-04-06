@@ -1,20 +1,21 @@
 <div> 
-  <ul class="list-group">
-    <li
-    *ngFor="let comment of displaycomments"
-    class="list-group-item">
-     <b>{{comment.commenter}}</b> {{ comment.content }}
-    <div>
+  <div class="title">Title: {{ post.title }}</div>
+  <div class="description"><i>{{ post.content }}</i></div>
 
-      <button *ngIf="isCurrentUser(comment.commenter_id)" class="button-delete" (click)="deleteComment(comment.content)"><i class="bi bi-trash"></i></button>     
-    </div>
-  </li>
+  <app-like [postid]="post.id"></app-like>
+  <ul class="list-comments">
+      <li *ngFor="let comment of displaycomments" class="list-comments-item">
+          <b>{{comment.commenter}}</b> {{ comment.content }}
+          <button *ngIf="isCurrentUser(comment.commenter_id)" class="button-delete"
+              (click)="deleteComment(comment.content)"><i class="bi bi-trash"></i></button>
+
+      </li>
   </ul>
-  <app-like  [postid]="post.id"></app-like>
 
-  <textarea  placeholder="Add a comment ..." class="new-comment" rows="4" style="position: relative;" [(ngModel)]="comment" ></textarea><br>
-  <button (click)="uploadComment()" style="float:left" class="button button1">Post</button>
-  
- 
+  <textarea placeholder="Add a comment ..." class="new-comment" rows="4" style="position: relative;"
+      [(ngModel)]="comment">
+  </textarea>
+
+  <button (click)="uploadComment()" style="float:right" class="btn btn-outline-secondary">Post</button>
 </div>
 
