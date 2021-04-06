@@ -1,0 +1,70 @@
+.button {
+    background-color: white;
+    border:none;
+    color: black;
+    padding: 3px 6px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+.new-comment {
+    width: 100%;
+}
+.button-delete {
+    float: right;
+    background-color:#808080 ;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+.button-delete:hover {
+    background-color: #585858;
+}
+.delete-icon {
+    font-size: 1 rem;
+}
+textarea{
+    border: none;
+}
+.list-comments {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    border-radius: 0.25rem;
+}
+.list-comments-item {
+    position: relative;
+    display: block;
+    padding-left: 0px;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+:host ::ng-deep .p-card{
+    padding-bottom: 25px;
+    margin-bottom: 40px;
+    border-radius: 30px;
+    box-shadow: 0 2px 1px -1px rgb(0 0 0 / 90%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 90%);
+}
+:host ::ng-deep .p-card-header{
+    padding-top: 10px;
+}
+:host ::ng-deep .p-card-content{
+    padding-top: 0px;
+}
+.description{
+    padding-bottom: 0px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}

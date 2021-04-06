@@ -24,6 +24,7 @@ import {CardModule} from 'primeng/card';
 import { LikeComponent } from './like/like.component';
 import { LikeListComponent } from './like-list/like-list.component';
 import { MiniProfileComponent } from './mini-profile/mini-profile.component';
+import { MainfeedPostComponent } from './mainfeed-post/mainfeed-post.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { MiniProfileComponent } from './mini-profile/mini-profile.component';
     LikeComponent,
     LikeListComponent,
     MiniProfileComponent,
+    MainfeedPostComponent,
   ],
   imports: [
     BrowserModule,
