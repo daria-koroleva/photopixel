@@ -12,8 +12,8 @@
  
 ## Progress
  - [x]  *Sprint 1*
- - [ ]  *Sprint 2*
- - [ ]  *Sprint 3*
+ - [x]  *Sprint 2*
+ - [x]  *Sprint 3*
  - [ ]  *Sprint 4*
  
 ## Technologies
@@ -26,14 +26,9 @@
   - Database: Mysql
   
 ## Objective
-The objective of this project is to create a social meida picture sharing websit. The ultimate goal is to create a website samiliar to the Instagram. The final product should conatin all the core features listed below. The team will add some other features during the development of the program if its necessary. This project is developed in the scope of SOEN 341 course at Concordia University. 
+The objective of this project is to create a social media picture sharing website. The ultimate goal is to create a website similar to Instagram. The final product should conatin all the core features listed below. The team will add some other features during the development of the program if it's necessary. This project is developed in the scope of SOEN 341 course at Concordia University. 
 
 ## Core Features
 - Posting a picture with text description
-   - Posting stories (viedo) (testing)
 - Following a user
-   - Followers should receive notification when new pic is post
 - Leave comments to a posted picture
-
-
-
