@@ -5,7 +5,6 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { PostComponent } from './post/post.component';
-import { FollowingComponent } from './following/following.component';
 import { CommentComponent } from './commentPage/commentPage.component';
 import { MainfeedComponent } from './mainfeed/mainfeed.component';
 
@@ -28,10 +27,7 @@ const routes: Routes = [
   },  
   {
     path:'post', component: PostComponent
-  },
-  {
-    path:'following/:id', component: FollowingComponent
-  },
+  },  
   {
     path:'comment', component: CommentComponent
   }

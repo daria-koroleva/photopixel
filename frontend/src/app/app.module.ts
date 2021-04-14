@@ -14,9 +14,7 @@ import { CommonModule } from '@angular/common';
 import { ProfileHeaderComponent } from './profile-header/profile-header.component';
 import { GalleryItemComponent } from './gallery-item/gallery-item.component';
 import { GalleryComponent } from './gallery/gallery.component';
-import { FollowingComponent } from './following/following.component';
 import { CommentComponent } from './commentPage/commentPage.component';
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { DataService } from './data.service';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { MainfeedComponent } from './mainfeed/mainfeed.component';
@@ -25,6 +23,7 @@ import { LikeComponent } from './like/like.component';
 import { LikeListComponent } from './like-list/like-list.component';
 import { MiniProfileComponent } from './mini-profile/mini-profile.component';
 import { MainfeedPostComponent } from './mainfeed-post/mainfeed-post.component';
+import { FollowerListComponent } from './follower-list/follower-list.component';
 
 
 @NgModule({
@@ -37,8 +36,7 @@ import { MainfeedPostComponent } from './mainfeed-post/mainfeed-post.component';
     HeaderComponent,
     ProfileHeaderComponent,
     GalleryItemComponent,
-    GalleryComponent,
-    FollowingComponent,
+    GalleryComponent,  
     CommentComponent,
     PostDetailComponent,
     MainfeedComponent,
@@ -46,6 +44,7 @@ import { MainfeedPostComponent } from './mainfeed-post/mainfeed-post.component';
     LikeListComponent,
     MiniProfileComponent,
     MainfeedPostComponent,
+    FollowerListComponent,
   ],
   imports: [
     BrowserModule,

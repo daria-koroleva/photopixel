@@ -1,0 +1,16 @@
+<div class="modal">
+    <span class="close" (click)="close()">&times;</span>
+    <div class="follower-content">
+
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div class="title">Followers</div>
+            </li>
+
+            <li *ngFor="let follower of followers" class="list-group-item">
+                <app-mini-profile [id]="follower.id"></app-mini-profile>
+            </li>
+        </ul>
+    </div>
+</div>
+
