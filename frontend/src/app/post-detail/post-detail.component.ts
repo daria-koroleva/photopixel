@@ -15,8 +15,6 @@ export class PostDetailComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
-
 
   close() {
     this.closed.emit();

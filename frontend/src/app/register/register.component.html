@@ -1,68 +1,52 @@
-<form [formGroup]='myForm' class="form-signin" (ngSubmit)="submitRegisterForm()" *ngIf="!userLoggedIn() && !this.registered" > 
-    <!-- <img class="mb-4" src="assets/images/logo.png" alt="" width="72" height="72"> -->
-    <i class="bi bi-camera-fill logo-picture"></i>  
-    <span class="logo">PhotoPixel</span>
+<form [formGroup]='myForm' class="form-signin" (ngSubmit)="submitRegisterForm()"
+  *ngIf="!userLoggedIn() && !this.registered">
 
-    
-    <label for="inputUsername" class="sr-only">Username</label>
-    <input formControlName="username" type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required (change)="checkEmail()">
-    <!-- errors -->
-    <div class="form-signin" id="email-errors" hidden></div>
-    
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required (change)="checkPW()">
-    <!-- errors -->
-    <div class="form-signin" id="pw-errors" hidden></div>
-
-    <label for="profilePic" class="sr-only">Profile Picture</label>
-    <input formControlName="profilePic" (change)="onFileSelected($event)" type="file" id="profile-pic" placeholder="Profile Pic" class="form-control">
+  <i class="bi bi-camera-fill logo-picture"></i>
+  <span class="logo">PhotoPixel</span>
 
 
-    <!-- errors -->
-    <div class="form-signin" id="register-errors"></div>
+  <label for="inputUsername" class="sr-only">Username</label>
+  <input formControlName="username" type="text" id="inputUsername" class="form-control" placeholder="Username" required
+    autofocus>
+  <label for="inputEmail" class="sr-only">Email address</label>
+  <input formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required
+    (change)="checkEmail()">
+  <!-- errors -->
+  <div class="form-signin" id="email-errors" hidden></div>
 
-    <button class="btn btn-lg btn-primary btn-block" id="submit-btn" type="submit">Register</button>
-    
-  </form>
+  <label for="inputPassword" class="sr-only">Password</label>
+  <input formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Password"
+    required (change)="checkPW()">
+  <!-- errors -->
+  <div class="form-signin" id="pw-errors" hidden></div>
 
-
-  <div class="form-signin" *ngIf="!userLoggedIn() && !this.registered">
-    <label>
-      Have an account? <a routerLink="/login"> Log in</a>
-    </label>
-    <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
-  </div>
-
-
-  
-  <div class="form-signin" *ngIf="this.registered" >
-    <i class="bi bi-camera-fill logo-picture"></i>  
-    <span class="logo">PhotoPixel</span>
-    <label>
-      Congratulations, you registration has been successfully completed!<a routerLink="/login"> Log in</a>
-    </label>
-    <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
-  </div>
-<!-- <p>Register</p>
+  <label for="profilePic" class="sr-only">Profile Picture</label>
+  <input formControlName="profilePic" (change)="onFileSelected($event)" type="file" id="profile-pic"
+    placeholder="Profile Pic" class="form-control">
 
 
-<form [formGroup]='myForm' (ngSubmit)="submitRegisterForm()" *ngIf="this.registered != true && !userLoggedIn()">
-    <div>
-        <label for="username">Username</label>
-        <input type="text" formControlName="username">
-    </div>
-    <div>
-        <label for="email">Email</label>
-        <input type="text" formControlName="email">
-    </div>
-    <div>
-        <label for="password">Password</label>
-        <input type="password" formControlName="password">
-    </div>
-    <button type="submit">Register</button>
+  <!-- errors -->
+  <div class="form-signin" id="register-errors"></div>
+
+  <button class="btn btn-lg btn-primary btn-block" id="submit-btn" type="submit">Register</button>
+
 </form>
 
-<button type="button" (click)="logout()">Logout</button>
-<div *ngIf="this.registered == true">REGISTER SUCCESS</div> -->
+
+<div class="form-signin" *ngIf="!userLoggedIn() && !this.registered">
+  <label>
+    Have an account? <a routerLink="/login"> Log in</a>
+  </label>
+  <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
+</div>
+
+
+
+<div class="form-signin" *ngIf="this.registered">
+  <i class="bi bi-camera-fill logo-picture"></i>
+  <span class="logo">PhotoPixel</span>
+  <label>
+    Congratulations, you registration has been successfully completed!<a routerLink="/login"> Log in</a>
+  </label>
+  <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
+</div>

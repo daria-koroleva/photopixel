@@ -32,8 +32,7 @@ export class PostComponent implements OnInit {
   
   submitPostForm(){
     this.api.newpost(this.f.title.value, this.f.content.value, this.selectedFile.name).pipe(first()).subscribe(
-      data => {
-        console.log(data);
+      data => {        
         this.posted = true;
         this.saveFile();
         this._router.navigateByUrl("/profile/"+JSON.parse(localStorage.getItem("currentUser")).id);

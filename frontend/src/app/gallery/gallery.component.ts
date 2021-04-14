@@ -8,14 +8,12 @@ import { Component, OnInit, Input } from '@angular/core';
 export class GalleryComponent implements OnInit {
 
   @Input() posts: any;
-  
-  constructor() { 
-   
+
+  constructor() {
 
   }
 
   ngOnInit(): void {
-   
 
   }
 

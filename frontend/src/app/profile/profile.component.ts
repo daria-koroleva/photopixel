@@ -71,8 +71,7 @@ export class ProfileComponent implements OnInit {
     console.log("delete image button is pressed");
     console.log(post_id);
     this.api.deleteImage(post_id).subscribe(
-      data => {
-        console.log(data);
+      data => {        
         this.posts = null;
         this._router.navigateByUrl("");
       }

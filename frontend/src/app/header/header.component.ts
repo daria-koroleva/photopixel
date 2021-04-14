@@ -35,10 +35,11 @@ export class HeaderComponent implements OnInit {
     )
   }
   onUserInput(event: any){
-    let str = event.target.value.trim()
-    this.users =!str ? [] :
+    let str = event.target.value.trim();
+   
+    this.users =!str ? [] :    
       this.allUsers.filter(item=>{
-        return item.username.indexOf(str)!=-1 
+        return item.username.toLowerCase().indexOf(str.toLowerCase())!=-1 
       })
     this.searchBox = event.target;
   }
