@@ -5,7 +5,7 @@ from django.conf import settings
 from backend.post import views
 
 urlpatterns = [
-    path('post/saveFile/', views.saveFile),
+    path('post/saveFile/', views.save_file),
     path('myposts/', views.PostListByCallingUser.as_view()),
     path('profileposts/<int:pk>', views.PostListByUserID.as_view()),
     path('post/', views.PostList.as_view()),

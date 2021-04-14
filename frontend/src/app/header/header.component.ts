@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
 
     this.users = !str ? [] :
       this.allUsers.filter(item => {
-        return item.username.toLowerCase().indexOf(str.toLowerCase()) != -1;
+        return item.username.toLowerCase().indexOf(str.toLowerCase()) !== -1;
       });
     this.searchBox = event.target;
   }

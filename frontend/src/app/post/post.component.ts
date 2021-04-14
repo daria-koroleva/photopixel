@@ -49,7 +49,7 @@ export class PostComponent implements OnInit {
   }
 
   correctEntryCheck(){
-    return (this.f.title.value.length > 0 && this.f.content.value.length > 0 && this.selectedFile.name.length > 0) ? true : false;
+    return (this.f.title.value.length > 0 && this.f.content.value.length > 0 && this.selectedFile != null) ? true : false;
   }
 
   userLoggedIn(){

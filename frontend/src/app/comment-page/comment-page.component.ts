@@ -1,11 +1,11 @@
 import { Component, Input} from '@angular/core';
-import { ApiService } from './../api.service';
+import { ApiService } from '../api.service';
 import { first  } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-commentPage',
-  templateUrl: './commentPage.component.html',
-  styleUrls: ['./commentPage.component.css']
+  selector: 'app-comment-page',
+  templateUrl: './comment-page.component.html',
+  styleUrls: ['./comment-page.component.css']
 })
 
 export class CommentComponent {

@@ -49,8 +49,8 @@ export class GalleryItemComponent implements OnInit {
   }
 
   deleteImage(post: any) {
-    const post_id = post.id;
-    this.api.deleteImage(post_id).subscribe(
+    const postId = post.id;
+    this.api.deleteImage(postId).subscribe(
       data => {
         this.posts = null;
         this._router.navigateByUrl('');

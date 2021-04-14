@@ -5,7 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { PostComponent } from './post/post.component';
-import { CommentComponent } from './commentPage/commentPage.component';
+import { CommentComponent } from './comment-page/comment-page.component';
 import { MainfeedComponent } from './mainfeed/mainfeed.component';
 
 

@@ -11,7 +11,7 @@ class Post(models.Model):
     photoFileName = models.CharField(max_length=100, default='fileName')
 
     def __str__(self):
-        return self.title
+        return str(self.title)
 
     class Meta:
         ordering = ['-date_posted']

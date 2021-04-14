@@ -41,13 +41,19 @@ export class RegisterComponent implements OnInit {
   }
 
   submitRegisterForm(){
-    this.api.register(this.f.username.value, this.f.email.value, this.f.password.value, this.selectedFile.name).pipe(first()).subscribe(
+
+    let filename = (this.selectedFile == null) ? 'DEFAULT.png' : this.selectedFile.name;
+
+    this.api.register(this.f.username.value, this.f.email.value, this.f.password.value, filename).pipe(first()).subscribe(
       res => {this.registered = true; this.saveFile(); }, err => {
         const element = document.getElementById('register-errors');
         element.innerHTML = '<p>Errors exist</p>';
       }
     );
+    
   }
+
+  
 
   getAllUsers(){
     this.api.getListOfUsers().subscribe(
@@ -94,11 +100,9 @@ export class RegisterComponent implements OnInit {
 
   onFileSelected(event: any){
     this.selectedFile = event.target.files[0];
-    console.log(this.selectedFile);
   }
 
   saveFile(){
-    console.log(this.selectedFile);
     const fd: FormData = new FormData();
     fd.append('uploadedFile', this.selectedFile, this.selectedFile.name);
     this.api.saveFileToServer(fd).subscribe();

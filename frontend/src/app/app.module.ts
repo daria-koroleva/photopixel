@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
 import { ProfileHeaderComponent } from './profile-header/profile-header.component';
 import { GalleryItemComponent } from './gallery-item/gallery-item.component';
 import { GalleryComponent } from './gallery/gallery.component';
-import { CommentComponent } from './commentPage/commentPage.component';
+import { CommentComponent } from './comment-page/comment-page.component';
 import { DataService } from './data.service';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { MainfeedComponent } from './mainfeed/mainfeed.component';

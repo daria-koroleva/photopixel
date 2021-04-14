@@ -29,8 +29,7 @@ class PostRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
         post = Post.objects.filter(pk=kwargs['pk'], poster=self.request.user)
         if post.exists():
             return self.destroy(request, *args, **kwargs)
-        else:
-            raise ValidationError('This isn\'t your post to delete!')
+        raise ValidationError('This isn\'t your post to delete!')
 
     def perform_create(self, serializer):
         serializer = PostSerializer(data=request.data)
@@ -167,7 +166,7 @@ class MainFeedFollowingPosts(generics.ListAPIView):
 
 
 @csrf_exempt
-def saveFile(request):
+def save_file(request):
     file = request.FILES['uploadedFile']
     file_name = default_storage.save(file.name, file)
 

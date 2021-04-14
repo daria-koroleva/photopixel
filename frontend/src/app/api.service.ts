@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 
-let httpOptions = {
+const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
     Authorization: 'null',
@@ -26,7 +27,7 @@ export class ApiService {
     httpOptions.headers = httpOptions.headers.set('Authorization', 'Token ' + JSON.parse(localStorage.getItem('currentUser')).token);
   }
 
-  login(username: string, password: string){
+  login(username: string, password: string):Observable<any>{
     return this.http.post<any>(this.baseurl + 'accounts/api/auth/login/',
     {username, password}, httpOptions).pipe(
       map(user => {
