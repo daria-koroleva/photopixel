@@ -10,12 +10,12 @@ export class MainfeedPostComponent implements OnInit {
 
   @Input() post;
 
-  displaycomments=[];
-  rawdata:any;
-  commentId:string;
+  displaycomments = [];
+  rawdata: any;
+  commentId: string;
   comment: string;
 
-  constructor(private api:ApiService) { }
+  constructor(private api: ApiService) { }
 
   ngOnInit(): void {
     this.requestComment();
@@ -24,42 +24,42 @@ export class MainfeedPostComponent implements OnInit {
 
   requestComment(){
 
-    this.displaycomments=[];    
-    
-    this.api.requestComment(this.post.id).subscribe(res=>{   
-      this.rawdata = res;        
-      for(let i in res){       
+    this.displaycomments = [];
+
+    this.api.requestComment(this.post.id).subscribe(res => {
+      this.rawdata = res;
+      for (const i in res){
         this.displaycomments.push(res[i]);
-      }     
-    })
+      }
+    });
   }
-  
-  deleteComment(comment:string){  
-    for(let i in this.rawdata){      
-      if(this.rawdata[i].content==comment){
-        this.commentId = this.rawdata[i].id
+
+  deleteComment(comment: string){
+    for (const i in this.rawdata){
+      if (this.rawdata[i].content == comment){
+        this.commentId = this.rawdata[i].id;
       }
     }
     this.api.deleteComment(this.post.id, this.commentId).
-    subscribe(res=>{
+    subscribe(res => {
       this.requestComment();
-    })
+    });
   }
 
   uploadComment(){
-   
-    this.api.uploadComment(this.post.id,this.comment).
-    subscribe(res=>{     
-      this.comment="";     
+
+    this.api.uploadComment(this.post.id, this.comment).
+    subscribe(res => {
+      this.comment = '';
       this.requestComment();
-    })
+    });
   }
 
 
 
-  isCurrentUser(id:number):boolean{
-      return (JSON.parse(localStorage.getItem("currentUser")).id==id)
+  isCurrentUser(id: number): boolean{
+      return (JSON.parse(localStorage.getItem('currentUser')).id == id);
   }
-  
+
 
 }

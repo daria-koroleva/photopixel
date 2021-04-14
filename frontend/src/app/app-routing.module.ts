@@ -10,26 +10,26 @@ import { MainfeedComponent } from './mainfeed/mainfeed.component';
 
 
 const routes: Routes = [
-  
+
   {
-    path:'login', component: LoginComponent    
+    path: 'login', component: LoginComponent
   },
   {
-    path:'', component: MainfeedComponent,
-    canActivate:[LoginGuard]
-  },  
-  {
-    path:'profile/:id', component: ProfileComponent,
-    canActivate:[LoginGuard]
+    path: '', component: MainfeedComponent,
+    canActivate: [LoginGuard]
   },
   {
-    path:'register', component: RegisterComponent    
-  },  
+    path: 'profile/:id', component: ProfileComponent,
+    canActivate: [LoginGuard]
+  },
   {
-    path:'post', component: PostComponent
-  },  
+    path: 'register', component: RegisterComponent
+  },
   {
-    path:'comment', component: CommentComponent
+    path: 'post', component: PostComponent
+  },
+  {
+    path: 'comment', component: CommentComponent
   }
 
 ];

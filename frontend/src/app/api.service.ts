@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 
-var httpOptions = {
+let httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'Authorization': "null",
+    Authorization: 'null',
   })
-}
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  baseurl: string = "http://127.0.0.1:8000/";
+  baseurl = 'http://127.0.0.1:8000/';
   constructor(private http: HttpClient) { }
 
   userLoggedIn(){
@@ -23,7 +23,7 @@ export class ApiService {
   }
 
   setTokenHeader(){
-    httpOptions.headers = httpOptions.headers.set('Authorization', 'Token ' + JSON.parse(localStorage.getItem("currentUser")).token);
+    httpOptions.headers = httpOptions.headers.set('Authorization', 'Token ' + JSON.parse(localStorage.getItem('currentUser')).token);
   }
 
   login(username: string, password: string){
@@ -31,20 +31,20 @@ export class ApiService {
     {username, password}, httpOptions).pipe(
       map(user => {
         if (user && user.token) {
-          localStorage.setItem("currentUser", JSON.stringify(user));
+          localStorage.setItem('currentUser', JSON.stringify(user));
         }
         return user;
       })
     );
   }
 
-  register(username: string, email: string, password: string, profilePhotoFileName:string){
+  register(username: string, email: string, password: string, profilePhotoFileName: string){
     return this.http.post<any>(this.baseurl + 'accounts/api/auth/register/',
     {username, email, password, profilePhotoFileName}, httpOptions);
   }
 
 
-  newpost(title: string, content: string, photoFileName:string){
+  newpost(title: string, content: string, photoFileName: string){
     if (this.userLoggedIn()){
       this.setTokenHeader();
     }
@@ -62,18 +62,18 @@ export class ApiService {
     return this.http.get(this.baseurl + 'posts/myposts/', httpOptions);
   }
 
-  getAllPostsByUserId(id:number){
+  getAllPostsByUserId(id: number){
     if (this.userLoggedIn()){
       this.setTokenHeader();
     }
-    return this.http.get(this.baseurl + 'posts/profileposts/'+id, httpOptions);
+    return this.http.get(this.baseurl + 'posts/profileposts/' + id, httpOptions);
   }
 
-  getProfileInfoByUserId(id:number){
+  getProfileInfoByUserId(id: number){
     if (this.userLoggedIn()){
       this.setTokenHeader();
     }
-    return this.http.get(this.baseurl + 'accounts/profile/'+id, httpOptions);
+    return this.http.get(this.baseurl + 'accounts/profile/' + id, httpOptions);
   }
   getFollowingsByUserId(){
     if (this.userLoggedIn()){
@@ -81,27 +81,27 @@ export class ApiService {
     }
     return this.http.get(this.baseurl + 'accounts/api/auth/follow/', httpOptions);
   }
-  saveFileToServer(file:any){
+  saveFileToServer(file: any){
     return this.http.post(this.baseurl + 'posts/post/saveFile/', file);
   }
 
-  deleteImage(id:any){
+  deleteImage(id: any){
     if (this.userLoggedIn()){
       this.setTokenHeader();
     }
-    return this.http.delete(this.baseurl + 'posts/post/'+ id, httpOptions);
+    return this.http.delete(this.baseurl + 'posts/post/' + id, httpOptions);
   }
-  UnFollow(id:any){
+  unFollow(id: any){
     if (this.userLoggedIn()){
       this.setTokenHeader();
     }
-    return this.http.delete(this.baseurl + 'accounts/api/auth/follow/?following='+id, httpOptions);
+    return this.http.delete(this.baseurl + 'accounts/api/auth/follow/?following=' + id, httpOptions);
   }
-  Follow(id:any){
+  follow(id: any){
     if (this.userLoggedIn()){
       this.setTokenHeader();
     }
-    return this.http.post<any>(this.baseurl + 'accounts/api/auth/follow/?following='+id,
+    return this.http.post<any>(this.baseurl + 'accounts/api/auth/follow/?following=' + id,
       {}, httpOptions);
       // return this.http.delete(this.baseurl + '/account/api/auth/follow/?id='+ id, httpOptions);
     }
@@ -109,78 +109,78 @@ export class ApiService {
   getListOfUsers(){
     return this.http.get(this.baseurl + 'accounts/users/');
   }
-  
-  
-  getListOfFollowersOfUserId(id:number){
+
+
+  getListOfFollowersOfUserId(id: number){
     if (this.userLoggedIn()){
       this.setTokenHeader();
     }
-    return this.http.get(this.baseurl + 'accounts/followersUser/'+id, httpOptions);
+    return this.http.get(this.baseurl + 'accounts/followersUser/' + id, httpOptions);
   }
 
-  getListOfUserIdFollowing(id:number){
+  getListOfUserIdFollowing(id: number){
     if (this.userLoggedIn()){
       this.setTokenHeader();
     }
-    return this.http.get(this.baseurl + 'accounts/followingUser/'+id, httpOptions);
+    return this.http.get(this.baseurl + 'accounts/followingUser/' + id, httpOptions);
   }
 
 
-  uploadComment(picId:string ,comment:string){
+  uploadComment(picId: string , comment: string){
 
-    if(this.userLoggedIn()){
+    if (this.userLoggedIn()){
       this.setTokenHeader();
     }
-    return this.http.post(this.baseurl + 'posts/post/' + picId + '/comment/', {content:comment},httpOptions);
+    return this.http.post(this.baseurl + 'posts/post/' + picId + '/comment/', {content: comment}, httpOptions);
   }
 
-  requestComment(picId:string){
+  requestComment(picId: string){
 
-    return this.http.get(this.baseurl + 'posts/post/'+ picId +'/comments')
+    return this.http.get(this.baseurl + 'posts/post/' + picId + '/comments');
   }
 
-  deleteComment(picId:string,commentId:string){
+  deleteComment(picId: string, commentId: string){
 
-    if(this.userLoggedIn()){
+    if (this.userLoggedIn()){
       this.setTokenHeader();
     }
-    return this.http.delete(this.baseurl + 'posts/post/' + picId +'/comment/'+commentId,httpOptions)
+    return this.http.delete(this.baseurl + 'posts/post/' + picId + '/comment/' + commentId, httpOptions);
   }
 
   getMainFeedPosts(){
-    if(this.userLoggedIn()){
+    if (this.userLoggedIn()){
       this.setTokenHeader();
     }
-    return this.http.get(this.baseurl + 'posts/mainfeed/',httpOptions)
+    return this.http.get(this.baseurl + 'posts/mainfeed/', httpOptions);
   }
 
 
 
-  like(picId:any, liker:any){
+  like(picId: any, liker: any){
     if (this.userLoggedIn()){
       this.setTokenHeader();
     }
-    return this.http.post<any>(this.baseurl + 'posts/post/'+picId+'/like' , {liker:liker}, httpOptions);
-     
+    return this.http.post<any>(this.baseurl + 'posts/post/' + picId + '/like' , {liker}, httpOptions);
+
     }
 
-    unlike(picId:any){
+    unlike(picId: any){
       if (this.userLoggedIn()){
         this.setTokenHeader();
       }
-      return this.http.delete<any>(this.baseurl + 'posts/post/'+picId+'/like' , httpOptions);
-       
+      return this.http.delete<any>(this.baseurl + 'posts/post/' + picId + '/like' , httpOptions);
+
       }
 
 
-      getLikesByPost(picId:any){
+      getLikesByPost(picId: any){
 
-        if(this.userLoggedIn()){
+        if (this.userLoggedIn()){
           this.setTokenHeader();
         }
-    
-        return this.http.get(this.baseurl + 'posts/post/'+picId+'/likes',httpOptions)
+
+        return this.http.get(this.baseurl + 'posts/post/' + picId + '/likes', httpOptions);
       }
-    
+
 
 }

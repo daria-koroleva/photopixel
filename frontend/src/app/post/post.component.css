@@ -38,6 +38,10 @@ body {
   border-bottom-left-radius: 0;
 }
 
-
+#post-errors {
+  color: red;
+  font-size: 12px;
+  margin-left: 10px;margin-top: 10px;
+}
 
 

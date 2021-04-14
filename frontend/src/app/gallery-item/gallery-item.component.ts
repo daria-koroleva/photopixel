@@ -19,8 +19,8 @@ export class GalleryItemComponent implements OnInit {
 
   posts: any;
   profileId: number = null;
-  profileInfoLoaded: boolean = false;
-  postsLoaded: boolean = false;
+  profileInfoLoaded = false;
+  postsLoaded = false;
 
   @Input() fileName: string;
   @Input() post: any;
@@ -33,7 +33,7 @@ export class GalleryItemComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.data.currentMessage.subscribe(message => this.message = message)
+    this.data.currentMessage.subscribe(message => this.message = message);
   }
 
 
@@ -49,19 +49,19 @@ export class GalleryItemComponent implements OnInit {
   }
 
   deleteImage(post: any) {
-    let post_id = post.id;   
+    const post_id = post.id;
     this.api.deleteImage(post_id).subscribe(
       data => {
         this.posts = null;
-        this._router.navigateByUrl("");
+        this._router.navigateByUrl('');
       }
     );
   }
 
   commentPage() {
-    this.passData.push(this.fileName)
-    this.passData.push(this.post.id)
-    this.newMessage(this.passData)
+    this.passData.push(this.fileName);
+    this.passData.push(this.post.id);
+    this.newMessage(this.passData);
   }
 
   newMessage(message) {
@@ -86,7 +86,7 @@ export class GalleryItemComponent implements OnInit {
   }
 
   isCurrentUser(): boolean {
-    return (JSON.parse(localStorage.getItem("currentUser")).id == this.post.poster_id);
+    return (JSON.parse(localStorage.getItem('currentUser')).id == this.post.poster_id);
   }
 
 }

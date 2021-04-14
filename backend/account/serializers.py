@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Account, Follow
 
+
 class AccountSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
 
@@ -19,9 +20,9 @@ class UserListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Account
-        fields = ('id','username', 'email')
-    
-    
+        fields = ('id', 'username', 'email')
+
+
 class FollowSerializer(serializers.ModelSerializer):
     class Meta:
         model = Follow

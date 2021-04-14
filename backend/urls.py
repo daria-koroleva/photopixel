@@ -14,5 +14,9 @@ urlpatterns = [
     path('accounts/', include('backend.account.urls')),
     path('posts/', include('backend.post.urls')),
     path('admin/', admin.site.urls),
-    path('api/auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path(
+        'api/auth/',
+        include(
+            'rest_framework.urls',
+            namespace='rest_framework'))
 ]

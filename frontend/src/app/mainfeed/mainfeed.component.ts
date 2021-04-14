@@ -9,11 +9,11 @@ import { ApiService } from './../api.service';
 export class MainfeedComponent implements OnInit {
 
 
-  constructor(private api : ApiService) { }
+  constructor(private api: ApiService) { }
 
-  posts:any;
-  
-  
+  posts: any;
+
+
   ngOnInit(): void {
     this.getMainFeedPosts();
   }
@@ -22,12 +22,12 @@ export class MainfeedComponent implements OnInit {
   getMainFeedPosts(){
     this.api.getMainFeedPosts().subscribe(
       data => {
-        this.posts = data;     
+        this.posts = data;
       }
-    )
+    );
   }
 
 
-  
+
 
 }

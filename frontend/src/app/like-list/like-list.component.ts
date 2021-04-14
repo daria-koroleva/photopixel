@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class LikeListComponent implements OnInit {
 
   @Output() closed = new EventEmitter<string>();
-  @Input() likes:any;
+  @Input() likes: any;
 
   constructor() { }
 
