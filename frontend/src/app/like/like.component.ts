@@ -11,7 +11,7 @@ export class LikeComponent implements OnInit {
   @Input() postid;
 
   likes: any = [];
-  isliked: boolean = true;
+  isliked = true;
 
   isShowLikers: boolean;
 
@@ -48,7 +48,7 @@ export class LikeComponent implements OnInit {
         this.likes = likes;
         this.isliked = this.likes.filter(like => like.liker == this.getLiker()).length > 0;
 
-      })
+      });
 
 
 
@@ -57,7 +57,7 @@ export class LikeComponent implements OnInit {
 
   getLiker() {
 
-    return JSON.parse(localStorage.getItem("currentUser")).id;
+    return JSON.parse(localStorage.getItem('currentUser')).id;
 
 
   }

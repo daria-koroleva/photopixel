@@ -12,7 +12,7 @@ export class FollowerListComponent implements OnInit {
   @Output() closed = new EventEmitter<string>();
   @Input() idUser;
 
-  followers:any;
+  followers: any;
 
   constructor(private api: ApiService) { }
 
@@ -33,8 +33,8 @@ export class FollowerListComponent implements OnInit {
     );
 
   }
- 
 
-  
+
+
 
 }

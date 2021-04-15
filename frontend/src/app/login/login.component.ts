@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ApiService } from './../api.service';
-import { first } from 'rxjs/operators'
+import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 
@@ -15,8 +15,8 @@ export class LoginComponent implements OnInit {
   myForm: FormGroup;
   userData: any;
   currentUserName: string;
-  
-  constructor(private api: ApiService,private _router:Router) { }
+
+  constructor(private api: ApiService, private _router: Router) { }
 
   ngOnInit(): void {
     this.myForm = new FormGroup({
@@ -38,10 +38,10 @@ get f() {
       },
       error => {
         console.log(error);
-        let element = document.getElementById('login-errors')
-        element.innerHTML = "<p>Incorrect email or password - please try again</p>"
+        const element = document.getElementById('login-errors');
+        element.innerHTML = '<p>Incorrect email or password - please try again</p>';
       }
-    )
+    );
   }
 
   logout(){
@@ -56,11 +56,11 @@ get f() {
 
   setCurrentUserName(){
     if (this.userLoggedIn()) {
-      this.currentUserName = JSON.parse(localStorage.getItem("currentUser")).username;
-      this._router.navigateByUrl("/");
+      this.currentUserName = JSON.parse(localStorage.getItem('currentUser')).username;
+      this._router.navigateByUrl('/');
     }
   }
 
-  
+
 
 }

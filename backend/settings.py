@@ -123,7 +123,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# LOGIN_REDIRECT_URL = '/' #will be setting this to the main feed when sorted - after user login
+# LOGIN_REDIRECT_URL = '/' #will be setting this to the main feed when
+# sorted - after user login
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, SimpleChange, Output, EventEmitter } from '@angular/core';
-import { first } from 'rxjs/operators'
+import { first } from 'rxjs/operators';
 import { ApiService } from './../api.service';
 import { ActivatedRoute } from '@angular/router';
 @Component({
@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./profile-header.component.css']
 })
 export class ProfileHeaderComponent implements OnInit {
-  public isFollow: boolean = false;
+  public isFollow = false;
   @Input() profileInfo: any;
   @Input() postCount: number;
   follows: any;
@@ -23,36 +23,36 @@ export class ProfileHeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.setCurrentUserName();
-    this.isFollow = false
+    this.isFollow = false;
 
   }
   ngOnChanges() {
-    let obj = arguments[0]
+    const obj = arguments[0];
     if (obj.profileInfo) {
       this.activatedRoute.params.subscribe(params => {
-        if (this.profileId == (params.id)) return;
+        if (this.profileId == (params.id)) { return; }
         this.profileId = params.id;
-        this.getFollowings()
-      })
+        this.getFollowings();
+      });
     }
 
   }
   getFollowings() {
-    let id = this.profileId;
-    let user = JSON.parse(localStorage.getItem("currentUser"));
-    this.isFollow = false
-    this.follows = []
-    if (!id) return;
+    const id = this.profileId;
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    this.isFollow = false;
+    this.follows = [];
+    if (!id) { return; }
     this.api.getListOfFollowersOfUserId(id).pipe(first()).subscribe(
       post => {
 
         this.follows = post;
         if (this.follows) {
           this.follows.map(item => {
-            if (item["id"] == this.user.id) {
+            if (item.id == this.user.id) {
               this.isFollow = true;
             }
-          })
+          });
         }
       }
     );
@@ -60,15 +60,15 @@ export class ProfileHeaderComponent implements OnInit {
 
   onClick() {
     if (this.isFollow) {
-      this.api.UnFollow(this.profileInfo.id).subscribe(
-        data => {         
-          this.getFollowings()
+      this.api.unFollow(this.profileInfo.id).subscribe(
+        data => {
+          this.getFollowings();
         }
       );
     } else {
-      this.api.Follow(this.profileInfo.id).subscribe(
-        data => {         
-          this.getFollowings()
+      this.api.follow(this.profileInfo.id).subscribe(
+        data => {
+          this.getFollowings();
         }
       );
     }
@@ -76,7 +76,7 @@ export class ProfileHeaderComponent implements OnInit {
 
 
   setCurrentUserName() {
-    this.user = JSON.parse(localStorage.getItem("currentUser"));
+    this.user = JSON.parse(localStorage.getItem('currentUser'));
     this.currentUserName = this.user.username;
 
   }

@@ -11,6 +11,8 @@
     <label for="uploadedFile" class="sr-only">Image</label>
     <input type="file" (change)="onFileSelected($event)" formControlName="uploadedFile" class="form-control" required>
 
+    <div id="post-errors" hidden></div>
+
     <button class="btn btn-lg btn-primary btn-block" type="submit">Post</button>
     
   </form>

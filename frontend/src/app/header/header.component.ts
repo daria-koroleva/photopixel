@@ -9,38 +9,38 @@ import { ApiService } from './../api.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  text=[];
-  baseurl = "http://127.0.0.1:8000/";
-  allUsers:any
-  users:any
-  currentUserID: number; //user id of logged in user
-  searchBox:any;
-  constructor(private api : ApiService,private http:HttpClient,private _router:Router) { }
+  text = [];
+  baseurl = 'http://127.0.0.1:8000/';
+  allUsers: any;
+  users: any;
+  currentUserID: number; // user id of logged in user
+  searchBox: any;
+  constructor(private api: ApiService, private http: HttpClient, private _router: Router) { }
 
   ngOnInit(): void {
     this.getAllUsers();
     this.setCurrentUserId();
-  } 
+  }
 
   logout(){
-    localStorage.removeItem('currentUser'); 
+    localStorage.removeItem('currentUser');
     localStorage.clear;
-    this._router.navigateByUrl("/");
+    this._router.navigateByUrl('/');
   }
   getAllUsers(){
     this.api.getListOfUsers().subscribe(
       data => {
         this.allUsers = data;
       }
-    )
+    );
   }
   onUserInput(event: any){
-    let str = event.target.value.trim();
-   
-    this.users =!str ? [] :    
-      this.allUsers.filter(item=>{
-        return item.username.toLowerCase().indexOf(str.toLowerCase())!=-1 
-      })
+    const str = event.target.value.trim();
+
+    this.users = !str ? [] :
+      this.allUsers.filter(item => {
+        return item.username.toLowerCase().indexOf(str.toLowerCase()) !== -1;
+      });
     this.searchBox = event.target;
   }
 
@@ -50,26 +50,26 @@ export class HeaderComponent implements OnInit {
 
   setCurrentUserId(){
     if (this.userLoggedIn()) {
-      this.currentUserID = JSON.parse(localStorage.getItem("currentUser")).id;
+      this.currentUserID = JSON.parse(localStorage.getItem('currentUser')).id;
     }
   }
 
-  redirectTo(uri:string){
-    this._router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+  redirectTo(uri: string){
+    this._router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
     this._router.navigate([uri]));
  }
 
-  changeProfile(id:string){
-    
+  changeProfile(id: string){
+
     this.users = [];
     this.searchBox.value = '';
-    this.redirectTo("profile/"+id);
-    
+    this.redirectTo('profile/' + id);
+
   }
 
   goToProfile(){
-   
-    this.redirectTo("profile/"+this.currentUserID);
+
+    this.redirectTo('profile/' + this.currentUserID);
   }
 
 }

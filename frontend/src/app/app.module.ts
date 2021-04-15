@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
 import { ProfileHeaderComponent } from './profile-header/profile-header.component';
 import { GalleryItemComponent } from './gallery-item/gallery-item.component';
 import { GalleryComponent } from './gallery/gallery.component';
-import { CommentComponent } from './commentPage/commentPage.component';
+import { CommentComponent } from './comment-page/comment-page.component';
 import { DataService } from './data.service';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { MainfeedComponent } from './mainfeed/mainfeed.component';
@@ -36,7 +36,7 @@ import { FollowerListComponent } from './follower-list/follower-list.component';
     HeaderComponent,
     ProfileHeaderComponent,
     GalleryItemComponent,
-    GalleryComponent,  
+    GalleryComponent,
     CommentComponent,
     PostDetailComponent,
     MainfeedComponent,

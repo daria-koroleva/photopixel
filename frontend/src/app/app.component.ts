@@ -8,10 +8,10 @@ import { Component } from '@angular/core';
   providers: [ ApiService ],
 })
 export class AppComponent {
-  
+
 
   constructor(private api: ApiService) {
-    
+
   }
 
   ngOnInit(){
