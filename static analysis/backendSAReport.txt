@@ -1,0 +1,83 @@
+Linting "backend"...
+************* Module backend.urls
+backend/urls.py:3:0: W0404: Reimport 'path' (imported line 2) (reimported)
+backend/urls.py:7:0: W0404: Reimport 'urls' (imported line 6) (reimported)
+backend/urls.py:5:0: W0611: Unused format_suffix_patterns imported from rest_framework.urlpatterns (unused-import)
+backend/urls.py:6:0: W0611: Unused urls imported from backend.account (unused-import)
+************* Module backend.post.models
+backend/post/models.py:13:4: E0307: __str__ does not return str (invalid-str-returned)
+backend/post/models.py:16:4: R0903: Too few public methods (0/2) (too-few-public-methods)
+************* Module backend.post.serializers
+backend/post/serializers.py:10:4: R0903: Too few public methods (0/2) (too-few-public-methods)
+backend/post/serializers.py:15:4: R0201: Method could be a function (no-self-use)
+backend/post/serializers.py:20:4: R0903: Too few public methods (0/2) (too-few-public-methods)
+backend/post/serializers.py:29:4: R0903: Too few public methods (0/2) (too-few-public-methods)
+************* Module backend.post.tests
+backend/post/tests.py:1:0: W0611: Unused TestCase imported from django.test (unused-import)
+************* Module backend.post.urls
+backend/post/urls.py:1:0: W0611: Unused include imported from django.urls (unused-import)
+backend/post/urls.py:3:0: C0412: Imports from package django are not grouped (ungrouped-imports)
+************* Module backend.post.views
+backend/post/views.py:1:0: W0404: Reimport 'status' (imported line 1) (reimported)
+backend/post/views.py:30:8: R1705: Unnecessary "else" after "return" (no-else-return)
+backend/post/views.py:36:41: E0602: Undefined variable 'request' (undefined-variable)
+backend/post/views.py:38:19: E0602: Undefined variable 'request' (undefined-variable)
+backend/post/views.py:39:12: W0612: Unused variable 'file_name' (unused-variable)
+backend/post/views.py:35:4: R0201: Method could be a function (no-self-use)
+backend/post/views.py:78:8: R1705: Unnecessary "else" after "return" (no-else-return)
+backend/post/views.py:77:21: W0613: Unused argument 'request' (unused-argument)
+backend/post/views.py:77:0: W0613: Unused argument 'args' (unused-argument)
+backend/post/views.py:77:0: W0613: Unused argument 'kwargs' (unused-argument)
+backend/post/views.py:102:8: C0103: Variable name "pk" doesn't conform to snake_case naming style (invalid-name)
+backend/post/views.py:106:12: W0707: Consider explicitly re-raising using the 'from' keyword (raise-missing-from)
+backend/post/views.py:106:18: E0602: Undefined variable 'NotFound' (undefined-variable)
+backend/post/views.py:120:44: E0602: Undefined variable 'request' (undefined-variable)
+backend/post/views.py:152:8: R1705: Unnecessary "else" after "return" (no-else-return)
+backend/post/views.py:151:21: W0613: Unused argument 'request' (unused-argument)
+backend/post/views.py:151:0: W0613: Unused argument 'args' (unused-argument)
+backend/post/views.py:151:0: W0613: Unused argument 'kwargs' (unused-argument)
+backend/post/views.py:170:0: C0103: Function name "saveFile" doesn't conform to snake_case naming style (invalid-name)
+backend/post/views.py:1:0: W0611: Unused viewsets imported from rest_framework (unused-import)
+backend/post/views.py:2:0: W0611: Unused api_view imported from rest_framework.decorators (unused-import)
+backend/post/views.py:4:0: W0611: Unused JSONParser imported from rest_framework.parsers (unused-import)
+backend/post/views.py:9:0: C0411: third party import "from django.core.files.storage import default_storage" should be placed before "from .models import Post, Like, Comment" (wrong-import-order)
+backend/post/views.py:10:0: C0411: third party import "from django.views.decorators.csrf import csrf_exempt" should be placed before "from .models import Post, Like, Comment" (wrong-import-order)
+backend/post/views.py:11:0: C0411: third party import "from django.http import JsonResponse" should be placed before "from .models import Post, Like, Comment" (wrong-import-order)
+************* Module backend.account.models
+backend/account/models.py:7:4: C0103: Argument name "profilePhotoFileName" doesn't conform to snake_case naming style (invalid-name)
+backend/account/models.py:59:4: E0307: __str__ does not return str (invalid-str-returned)
+backend/account/models.py:62:23: W0613: Unused argument 'perm' (unused-argument)
+backend/account/models.py:62:29: W0613: Unused argument 'obj' (unused-argument)
+backend/account/models.py:65:31: W0613: Unused argument 'app_label' (unused-argument)
+backend/account/models.py:65:4: R0201: Method could be a function (no-self-use)
+************* Module backend.account.serializers
+backend/account/serializers.py:8:4: R0903: Too few public methods (0/2) (too-few-public-methods)
+backend/account/serializers.py:13:18: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+backend/account/serializers.py:21:4: R0903: Too few public methods (0/2) (too-few-public-methods)
+backend/account/serializers.py:27:4: R0903: Too few public methods (0/2) (too-few-public-methods)
+************* Module backend.account.admin
+backend/account/admin.py:3:0: C0411: third party import "from rest_framework.authtoken.admin import TokenAdmin" should be placed before "from backend.account.models import Account, Follow" (wrong-import-order)
+************* Module backend.account.tests
+backend/account/tests.py:1:0: W0611: Unused TestCase imported from django.test (unused-import)
+************* Module backend.account.views
+backend/account/views.py:3:0: C0301: Line too long (105/100) (line-too-long)
+backend/account/views.py:9:0: W0404: Reimport 'Response' (imported line 5) (reimported)
+backend/account/views.py:20:27: W0622: Redefining built-in 'format' (redefined-builtin)
+backend/account/views.py:20:27: W0613: Unused argument 'format' (unused-argument)
+backend/account/views.py:20:4: R0201: Method could be a function (no-self-use)
+backend/account/views.py:52:15: W0612: Unused variable 'created' (unused-variable)
+backend/account/views.py:81:8: C0103: Variable name "f1" doesn't conform to snake_case naming style (invalid-name)
+backend/account/views.py:85:15: W0703: Catching too general exception BaseException (broad-except)
+backend/account/views.py:76:0: W0613: Unused argument 'args' (unused-argument)
+backend/account/views.py:76:0: W0613: Unused argument 'kwargs' (unused-argument)
+backend/account/views.py:76:4: R0201: Method could be a function (no-self-use)
+backend/account/views.py:88:0: W0613: Unused argument 'args' (unused-argument)
+backend/account/views.py:88:0: W0613: Unused argument 'kwargs' (unused-argument)
+backend/account/views.py:88:4: R0201: Method could be a function (no-self-use)
+backend/account/views.py:97:0: W0613: Unused argument 'args' (unused-argument)
+backend/account/views.py:97:0: W0613: Unused argument 'kwargs' (unused-argument)
+backend/account/views.py:97:4: R0201: Method could be a function (no-self-use)
+backend/account/views.py:2:0: W0611: Unused render imported from django.shortcuts (unused-import)
+
+------------------------------------------------------------------
+Your code has been rated at 7.44/10
