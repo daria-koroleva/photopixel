@@ -1,0 +1,168 @@
+Linting "frontend"...
+/Users/ryanleyland/Desktop/new/SOEN341Project/frontend/src/app/api.service.ts:6:5
+ERROR: 6:5    prefer-const             Identifier 'httpOptions' is never reassigned; use 'const' instead of 'let'.
+ERROR: 21:3   typedef                  expected call-signature: 'userLoggedIn' to have a typedef
+ERROR: 22:33  triple-equals            != should be !==
+ERROR: 25:3   typedef                  expected call-signature: 'setTokenHeader' to have a typedef
+ERROR: 29:3   typedef                  expected call-signature: 'login' to have a typedef
+ERROR: 41:3   typedef                  expected call-signature: 'register' to have a typedef
+ERROR: 47:3   typedef                  expected call-signature: 'newpost' to have a typedef
+ERROR: 55:3   typedef                  expected call-signature: 'getAllPosts' to have a typedef
+ERROR: 58:3   typedef                  expected call-signature: 'getMyPosts' to have a typedef
+ERROR: 65:3   typedef                  expected call-signature: 'getAllPostsByUserId' to have a typedef
+ERROR: 72:3   typedef                  expected call-signature: 'getProfileInfoByUserId' to have a typedef
+ERROR: 78:3   typedef                  expected call-signature: 'getFollowingsByUserId' to have a typedef
+ERROR: 84:3   typedef                  expected call-signature: 'saveFileToServer' to have a typedef
+ERROR: 88:3   typedef                  expected call-signature: 'deleteImage' to have a typedef
+ERROR: 94:3   typedef                  expected call-signature: 'unFollow' to have a typedef
+ERROR: 100:3  typedef                  expected call-signature: 'follow' to have a typedef
+ERROR: 109:3  typedef                  expected call-signature: 'getListOfUsers' to have a typedef
+ERROR: 114:3  typedef                  expected call-signature: 'getListOfFollowersOfUserId' to have a typedef
+ERROR: 121:3  typedef                  expected call-signature: 'getListOfUserIdFollowing' to have a typedef
+ERROR: 129:3  typedef                  expected call-signature: 'uploadComment' to have a typedef
+ERROR: 137:3  typedef                  expected call-signature: 'requestComment' to have a typedef
+ERROR: 142:3  typedef                  expected call-signature: 'deleteComment' to have a typedef
+ERROR: 150:3  typedef                  expected call-signature: 'getMainFeedPosts' to have a typedef
+ERROR: 159:3  typedef                  expected call-signature: 'like' to have a typedef
+ERROR: 167:5  typedef                  expected call-signature: 'unlike' to have a typedef
+ERROR: 176:7  typedef                  expected call-signature: 'getLikesByPost' to have a typedef
+
+/Users/ryanleyland/Desktop/new/SOEN341Project/frontend/src/app/app.component.ts:17:3
+ERROR: 17:3   typedef                  expected call-signature: 'ngOnInit' to have a typedef
+ERROR: 17:3   use-lifecycle-interface  Lifecycle interface OnInit should be implemented for method ngOnInit. (https://angular.io/styleguide#style-09-01)
+ERROR: 20:3   typedef                  expected call-signature: 'userLoggedIn' to have a typedef
+ERROR: 21:33  triple-equals            != should be !==
+
+/Users/ryanleyland/Desktop/new/SOEN341Project/frontend/src/app/commentPage/commentPage.component.ts:6:13
+ERROR: 6:13   component-selector       The selector should be kebab-cased and include a dash (https://angular.io/guide/styleguide#style-05-02)
+ERROR: 27:3   use-lifecycle-interface  Lifecycle interface OnInit should be implemented for method ngOnInit. (https://angular.io/styleguide#style-09-01)
+ERROR: 32:3   typedef                  expected call-signature: 'requestComment' to have a typedef
+ERROR: 39:7   forin                    for (... in ...) statements must be filtered with an if statement
+ERROR: 45:3   typedef                  expected call-signature: 'getProfilePosts' to have a typedef
+ERROR: 54:3   typedef                  expected call-signature: 'uploadComment' to have a typedef
+ERROR: 63:3   typedef                  expected call-signature: 'deleteComment' to have a typedef
+ERROR: 65:35  triple-equals            == should be ===
+ERROR: 77:66  triple-equals            == should be ===
+
+/Users/ryanleyland/Desktop/new/SOEN341Project/frontend/src/app/data.service.ts:12:3
+ERROR: 12:3   typedef                  expected call-signature: 'changeMessage' to have a typedef
+
+/Users/ryanleyland/Desktop/new/SOEN341Project/frontend/src/app/follower-list/follower-list.component.ts:23:3
+ERROR: 23:3   typedef                  expected call-signature: 'close' to have a typedef
+ERROR: 28:3   typedef                  expected call-signature: 'loadFollowers' to have a typedef
+
+/Users/ryanleyland/Desktop/new/SOEN341Project/frontend/src/app/gallery-item/gallery-item.component.ts:31:48
+ERROR: 31:48  variable-name            variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: 40:3   typedef                  expected call-signature: 'getProfilePosts' to have a typedef
+ERROR: 51:3   typedef                  expected call-signature: 'deleteImage' to have a typedef
+ERROR: 52:11  variable-name            variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: 61:3   typedef                  expected call-signature: 'commentPage' to have a typedef
+ERROR: 67:3   typedef                  expected call-signature: 'newMessage' to have a typedef
+ERROR: 71:3   typedef                  expected call-signature: 'newMessage1' to have a typedef
+ERROR: 89:64  triple-equals            == should be ===
+
+/Users/ryanleyland/Desktop/new/SOEN341Project/frontend/src/app/header/header.component.ts:18:74
+ERROR: 18:74  variable-name            variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: 25:3   typedef                  expected call-signature: 'logout' to have a typedef
+ERROR: 27:5   no-unused-expression     unused expression, expected an assignment or function call
+ERROR: 30:3   typedef                  expected call-signature: 'getAllUsers' to have a typedef
+ERROR: 37:3   typedef                  expected call-signature: 'onUserInput' to have a typedef
+ERROR: 42:71  triple-equals            != should be !==
+ERROR: 47:3   typedef                  expected call-signature: 'userLoggedIn' to have a typedef
+ERROR: 48:33  triple-equals            != should be !==
+ERROR: 51:3   typedef                  expected call-signature: 'setCurrentUserId' to have a typedef
+ERROR: 57:3   typedef                  expected call-signature: 'redirectTo' to have a typedef
+ERROR: 62:3   typedef                  expected call-signature: 'changeProfile' to have a typedef
+ERROR: 70:3   typedef                  expected call-signature: 'goToProfile' to have a typedef
+
+/Users/ryanleyland/Desktop/new/SOEN341Project/frontend/src/app/like-list/like-list.component.ts:18:3
+ERROR: 18:3   typedef                  expected call-signature: 'close' to have a typedef
+
+/Users/ryanleyland/Desktop/new/SOEN341Project/frontend/src/app/like/like.component.ts:25:3
+ERROR: 25:3   typedef                  expected call-signature: 'like' to have a typedef
+ERROR: 34:3   typedef                  expected call-signature: 'unlike' to have a typedef
+ERROR: 43:3   typedef                  expected call-signature: 'updateLikes' to have a typedef
+ERROR: 49:61  triple-equals            == should be ===
+ERROR: 58:3   typedef                  expected call-signature: 'getLiker' to have a typedef
+ERROR: 65:3   typedef                  expected call-signature: 'showLikers' to have a typedef
+ERROR: 69:3   typedef                  expected call-signature: 'closeLikers' to have a typedef
+
+/Users/ryanleyland/Desktop/new/SOEN341Project/frontend/src/app/login-guard.guard.ts:18:5
+ERROR: 18:5   typedef                  expected call-signature: 'userLoggedIn' to have a typedef
+ERROR: 19:37  triple-equals            != should be !==
+
+/Users/ryanleyland/Desktop/new/SOEN341Project/frontend/src/app/login/login.component.ts:19:48
+ERROR: 19:48  variable-name            variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: 29:5   typedef                  expected call-signature: 'f' to have a typedef
+ERROR: 33:3   typedef                  expected call-signature: 'submitLoginForm' to have a typedef
+ERROR: 47:3   typedef                  expected call-signature: 'logout' to have a typedef
+ERROR: 50:5   no-unused-expression     unused expression, expected an assignment or function call
+ERROR: 53:3   typedef                  expected call-signature: 'userLoggedIn' to have a typedef
+ERROR: 54:33  triple-equals            != should be !==
+ERROR: 57:3   typedef                  expected call-signature: 'setCurrentUserName' to have a typedef
+
+/Users/ryanleyland/Desktop/new/SOEN341Project/frontend/src/app/mainfeed-post/mainfeed-post.component.ts:25:3
+ERROR: 25:3   typedef                  expected call-signature: 'requestComment' to have a typedef
+ERROR: 31:7   forin                    for (... in ...) statements must be filtered with an if statement
+ERROR: 37:3   typedef                  expected call-signature: 'deleteComment' to have a typedef
+ERROR: 39:35  triple-equals            == should be ===
+ERROR: 49:3   typedef                  expected call-signature: 'uploadComment' to have a typedef
+ERROR: 61:66  triple-equals            == should be ===
+
+/Users/ryanleyland/Desktop/new/SOEN341Project/frontend/src/app/mainfeed/mainfeed.component.ts:22:3
+ERROR: 22:3   typedef                  expected call-signature: 'getMainFeedPosts' to have a typedef
+
+/Users/ryanleyland/Desktop/new/SOEN341Project/frontend/src/app/mini-profile/mini-profile.component.ts:23:3
+ERROR: 23:3   typedef                  expected call-signature: 'getInfoProfile' to have a typedef
+
+/Users/ryanleyland/Desktop/new/SOEN341Project/frontend/src/app/post-detail/post-detail.component.ts:19:3
+ERROR: 19:3   typedef                  expected call-signature: 'close' to have a typedef
+
+/Users/ryanleyland/Desktop/new/SOEN341Project/frontend/src/app/post/post.component.ts:19:48
+ERROR: 19:48  variable-name            variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: 30:7   typedef                  expected call-signature: 'f' to have a typedef
+ERROR: 34:3   typedef                  expected call-signature: 'submitPostForm' to have a typedef
+ERROR: 51:3   typedef                  expected call-signature: 'correctEntryCheck' to have a typedef
+ERROR: 55:3   typedef                  expected call-signature: 'userLoggedIn' to have a typedef
+ERROR: 56:33  triple-equals            != should be !==
+ERROR: 59:3   typedef                  expected call-signature: 'setCurrentUserName' to have a typedef
+ERROR: 65:3   typedef                  expected call-signature: 'onFileSelected' to have a typedef
+ERROR: 73:3   typedef                  expected call-signature: 'saveFile' to have a typedef
+
+/Users/ryanleyland/Desktop/new/SOEN341Project/frontend/src/app/profile-header/profile-header.component.ts:29:3
+ERROR: 29:3   typedef                  expected call-signature: 'ngOnChanges' to have a typedef
+ERROR: 29:3   use-lifecycle-interface  Lifecycle interface OnChanges should be implemented for method ngOnChanges. (https://angular.io/styleguide#style-09-01)
+ERROR: 33:28  triple-equals            == should be ===
+ERROR: 40:3   typedef                  expected call-signature: 'getFollowings' to have a typedef
+ERROR: 52:25  triple-equals            == should be ===
+ERROR: 61:3   typedef                  expected call-signature: 'onClick' to have a typedef
+ERROR: 78:3   typedef                  expected call-signature: 'setCurrentUserName' to have a typedef
+ERROR: 85:3   typedef                  expected call-signature: 'showFollowers' to have a typedef
+ERROR: 89:3   typedef                  expected call-signature: 'closeFollowers' to have a typedef
+
+/Users/ryanleyland/Desktop/new/SOEN341Project/frontend/src/app/profile/profile.component.ts:22:48
+ERROR: 22:48  variable-name            variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: 39:3   typedef                  expected call-signature: 'userLoggedIn' to have a typedef
+ERROR: 40:33  triple-equals            != should be !==
+ERROR: 43:3   typedef                  expected call-signature: 'setCurrentUserName' to have a typedef
+ERROR: 49:3   typedef                  expected call-signature: 'getProfilePosts' to have a typedef
+ERROR: 58:3   typedef                  expected call-signature: 'getProfileInfo' to have a typedef
+ERROR: 69:3   typedef                  expected call-signature: 'deleteImage' to have a typedef
+ERROR: 70:11  variable-name            variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+
+/Users/ryanleyland/Desktop/new/SOEN341Project/frontend/src/app/register/register.component.ts:30:7
+ERROR: 30:7   typedef                  expected call-signature: 'f' to have a typedef
+ERROR: 34:3   typedef                  expected call-signature: 'userLoggedIn' to have a typedef
+ERROR: 35:33  triple-equals            != should be !==
+ERROR: 38:3   typedef                  expected call-signature: 'logout' to have a typedef
+ERROR: 40:5   no-unused-expression     unused expression, expected an assignment or function call
+ERROR: 43:3   typedef                  expected call-signature: 'submitRegisterForm' to have a typedef
+ERROR: 52:3   typedef                  expected call-signature: 'getAllUsers' to have a typedef
+ERROR: 61:3   typedef                  expected call-signature: 'checkEmail' to have a typedef
+ERROR: 65:5   prefer-for-of            Expected a 'for-of' loop instead of a 'for' loop with this simple iteration
+ERROR: 66:34  triple-equals            == should be ===
+ERROR: 79:3   typedef                  expected call-signature: 'checkPW' to have a typedef
+ERROR: 95:3   typedef                  expected call-signature: 'onFileSelected' to have a typedef
+ERROR: 100:3  typedef                  expected call-signature: 'saveFile' to have a typedef
+
+Lint errors found in the listed files.
